@@ -1,6 +1,6 @@
 package br.com.unipe.enumerator;
 
-public enum Estado {
+public enum Estados {
 
 	PB("Paraiba"), 
 	PE("Pernambuco"), 
@@ -15,7 +15,7 @@ public enum Estado {
 
 	private String label;
 
-	private Estado(String label) {
+	private Estados(String label) {
 
 		this.label = label;
 	}

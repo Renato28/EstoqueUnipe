@@ -12,8 +12,8 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import br.com.unipe.enumerator.Cidade;
-import br.com.unipe.enumerator.Estado;
+import br.com.unipe.enumerator.Cidades;
+import br.com.unipe.enumerator.Estados;
 import br.com.unipe.enumerator.Logradouro;
 
 @Entity
@@ -32,10 +32,10 @@ public class Endereco implements Serializable {
 	private Logradouro logradouro;
 	@Column(nullable = false)
 	@NotEmpty
-	private Cidade municipio;
+	private Cidades municipio;
 	@Column(nullable = false)
 	@NotEmpty
-	private Estado estado;
+	private Estados estado;
 	@Column(nullable = false)
 	@NotEmpty
 	@Length(min = 1, max = 9999)
@@ -53,19 +53,19 @@ public class Endereco implements Serializable {
 		this.logradouro = logradouro;
 	}
 
-	public Cidade getMunicipio() {
+	public Cidades getMunicipio() {
 		return municipio;
 	}
 
-	public void setMunicipio(Cidade municipio) {
+	public void setMunicipio(Cidades municipio) {
 		this.municipio = municipio;
 	}
 
-	public Estado getEstado() {
+	public Estados getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Estado estado) {
+	public void setEstado(Estados estado) {
 		this.estado = estado;
 	}
 

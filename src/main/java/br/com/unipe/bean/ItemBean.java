@@ -24,37 +24,41 @@ public class ItemBean implements Serializable {
 	private Item item;
 	private TipoItem tipoItem;
 
-	private List<Item> listItem = new ArrayList<Item>();
+	private Item selectItem;
+	private List<Item> listItem;
 	private ItemDaoImpl itemDaoImpl;
 
 	private String filtro;
 
-	public Item getItem() {
-		return item;
+	public Item getSelectItem() {
+		return selectItem;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setSelectItem(Item selectItem) {
+		this.selectItem = selectItem;
 	}
 
-	public TipoItem getTipoItem() {
-		return tipoItem;
+	public String getFiltro() {
+		return filtro;
 	}
 
-	public void setTipoItem(TipoItem tipoItem) {
-		this.tipoItem = tipoItem;
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
 	}
 
-	public void setListItem(List<Item> listItem) {
-		this.listItem = listItem;
+	public ItemBean() {
+		item = new Item();
+		listItem = new ArrayList<>();
+		listItem = Itens.INSTANCE.allItens();
 	}
 
-	public ItemDaoImpl getItemDaoImpl() {
-		return itemDaoImpl;
+	public String prepararCadastro() {
+		item = new Item();
+		return "cadastroItem";
 	}
 
-	public void setItemDaoImpl(ItemDaoImpl itemDaoImpl) {
-		this.itemDaoImpl = itemDaoImpl;
+	public String prepararList() {
+		return "";
 	}
 
 	public String adicionarItem(Item item) {
@@ -90,4 +94,33 @@ public class ItemBean implements Serializable {
 			}
 		}
 	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public TipoItem getTipoItem() {
+		return tipoItem;
+	}
+
+	public void setTipoItem(TipoItem tipoItem) {
+		this.tipoItem = tipoItem;
+	}
+
+	public void setListItem(List<Item> listItem) {
+		this.listItem = listItem;
+	}
+
+	public ItemDaoImpl getItemDaoImpl() {
+		return itemDaoImpl;
+	}
+
+	public void setItemDaoImpl(ItemDaoImpl itemDaoImpl) {
+		this.itemDaoImpl = itemDaoImpl;
+	}
+
 }

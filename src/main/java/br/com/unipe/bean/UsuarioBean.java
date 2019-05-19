@@ -6,13 +6,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
 import br.com.unipe.dao.UsuarioDaoImpl;
 import br.com.unipe.entidade.Endereco;
 import br.com.unipe.entidade.Usuario;
-import br.com.unipe.enumerator.Cidade;
-import br.com.unipe.enumerator.Estado;
+import br.com.unipe.enumerator.Cidades;
+import br.com.unipe.enumerator.Estados;
 import br.com.unipe.enumerator.Sexo;
 import br.com.unipe.enumerator.Usuarios;
 
@@ -26,19 +27,97 @@ public class UsuarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	private Endereco endereco;
-	private Estado estado;
-	private Cidade cidade;
+	private Estados estado;
+	private Cidades cidade;
 	private Sexo sexo;
 
 	private List<Usuario> listUsuario = new ArrayList<Usuario>();
 	private List<Endereco> listEndereco;
-	private List<Estado> listEstado;
-	private List<Cidade> listCidade;
-	private List<Sexo> listSexo;
+
+	private Estados selectEstado;
+	private List<SelectItem> listEstado;
+	private List<SelectItem> listCidade;
+	private List<SelectItem> listSexo;
 
 	private UsuarioDaoImpl usuarioDaoImpl;
 
 	private String filtro;
+
+	public UsuarioBean() {
+		usuario = new Usuario();
+		listCidade = new ArrayList<>();
+		listUsuario = new ArrayList<>();
+		listUsuario = Usuarios.INSTANCE.allUsers();
+	}
+
+	@PostConstruct
+	public void initSexo() {
+		listSexo = new ArrayList<>();
+		for (Sexo s : Sexo.values()) {
+			listSexo.add(new SelectItem(s, s.getLabel()));
+		}
+
+		listCidade = new ArrayList<>();
+		for (Cidades c : Cidades.values()) {
+			listCidade.add(new SelectItem(c, c.getLabel()));
+		}
+
+		listEstado = new ArrayList<>();
+		for (Estados e : Estados.values()) {
+			listCidade.add(new SelectItem(e, e.getLabel()));
+		}
+	}
+
+	public void carregarCidades() {
+		listCidade = new ArrayList<>();
+		for (Cidades cidades : Cidades.values()) {
+			if (selectEstado.name().equals(cidades.getEstado()))
+				listCidade.add(new SelectItem(cidade, cidade.getLabel()));
+		}
+	}
+
+	public String prepararCadastro() {
+		usuario = new Usuario();
+		return "cadastroUsuario";
+	}
+
+	public String prepararList() {
+		return "";
+	}
+
+	public String adicionarUsuario(Usuario usuario) {
+		usuarioDaoImpl.salvar(usuario);
+		return "listaUsuario";
+	}
+
+	public List<Usuario> getListUsuario() {
+		return listUsuario;
+	}
+
+	public String atualizarUsuario(Usuario usuario) {
+		usuarioDaoImpl.atualizar(usuario);
+		return "listaUsuario";
+	}
+
+	public String excluirUsuario(long id) {
+		usuarioDaoImpl.excluir(id);
+		return "listaUsuario";
+	}
+
+	@PostConstruct
+	public void inicializarTabela() {
+		usuarioDaoImpl = new UsuarioDaoImpl();
+		listUsuario = usuarioDaoImpl.ListUsuario();
+	}
+
+	public void filtrarTabela() {
+		listUsuario = new ArrayList<>();
+		for (Usuario u : Usuarios.INSTANCE.allUsers()) {
+			if (u.getNome().contains(filtro)) {
+				listUsuario.add(u);
+			}
+		}
+	}
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -56,19 +135,19 @@ public class UsuarioBean implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public Estado getEstado() {
+	public Estados getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Estado estado) {
+	public void setEstado(Estados estado) {
 		this.estado = estado;
 	}
 
-	public Cidade getCidade() {
+	public Cidades getCidade() {
 		return cidade;
 	}
 
-	public void setCidade(Cidade cidade) {
+	public void setCidade(Cidades cidade) {
 		this.cidade = cidade;
 	}
 
@@ -80,10 +159,6 @@ public class UsuarioBean implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public void setListUsuario(List<Usuario> listUsuario) {
-		this.listUsuario = listUsuario;
-	}
-
 	public List<Endereco> getListEndereco() {
 		return listEndereco;
 	}
@@ -92,27 +167,27 @@ public class UsuarioBean implements Serializable {
 		this.listEndereco = listEndereco;
 	}
 
-	public List<Estado> getListEstado() {
+	public List<SelectItem> getListEstado() {
 		return listEstado;
 	}
 
-	public void setListEstado(List<Estado> listEstado) {
+	public void setListEstado(List<SelectItem> listEstado) {
 		this.listEstado = listEstado;
 	}
 
-	public List<Cidade> getListCidade() {
+	public List<SelectItem> getListCidade() {
 		return listCidade;
 	}
 
-	public void setListCidade(List<Cidade> listCidade) {
+	public void setListCidade(List<SelectItem> listCidade) {
 		this.listCidade = listCidade;
 	}
 
-	public List<Sexo> getListSexo() {
+	public List<SelectItem> getListSexo() {
 		return listSexo;
 	}
 
-	public void setListSexo(List<Sexo> listSexo) {
+	public void setListSexo(List<SelectItem> listSexo) {
 		this.listSexo = listSexo;
 	}
 
@@ -132,38 +207,8 @@ public class UsuarioBean implements Serializable {
 		this.filtro = filtro;
 	}
 
-	public String adicionarUsuario(Usuario usuario) {
-		usuarioDaoImpl.salvar(usuario);
-		return "listaUsuario";
-	}
-
-	public List<Usuario> getListUsuario() {
-		return listUsuario;
-	}
-
-	public String atualizarUsuario(Usuario usuario) {
-		usuarioDaoImpl.atualizar(usuario);
-		return "listaUsuario";
-	}
-	
-	public String excluirUsuario(long id) {
-		usuarioDaoImpl.excluir(id);
-		return "listaUsuario";
-	}
-
-	@PostConstruct
-	public void inicializarTabela() {
-		usuarioDaoImpl = new UsuarioDaoImpl();
-		listUsuario = usuarioDaoImpl.ListUsuario();
-	}
-
-	public void filtrarTabela() {
-		listUsuario = new ArrayList<>();
-		for (Usuario u : Usuarios.INSTANCE.allUsers()) {
-			if (u.getNome().contains(filtro)) {
-				listUsuario.add(u);
-			}
-		}
+	public void setListUsuario(List<Usuario> listUsuario) {
+		this.listUsuario = listUsuario;
 	}
 
 }
