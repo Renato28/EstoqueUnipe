@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import br.com.unipe.enumerator.Sexo;
 import br.com.unipe.enumerator.TipoPessoa;
 
+
 public class Usuario implements Serializable {
 
 	/**
@@ -37,7 +38,7 @@ public class Usuario implements Serializable {
 	private Endereco endereco;
 
 	@NotEmpty
-	@Email
+	@Email(message = "Email não pode ser nulo!")
 	private String email;
 
 	@Past

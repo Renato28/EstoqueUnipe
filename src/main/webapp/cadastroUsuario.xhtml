@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Cadastro</title>
+</h:head>
+<h:body>
+	<p:panel header="Cadastro de Usuários">
+		<h:form>
+			<p:commandLink value="Listar Usuários" action="ListarUsuarios" />
+			<br />
+		</h:form>
+		<h:form id="form" prependId="false">
+			<p:panelGrid columns="3">
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" value="#{usuarioBean.usuario.nome}"
+					required="true">
+				</p:inputText>
+				<p:message for="nome" />
+				<p:outputLabel value="Username" for="username"/>
+				<p:inputText id="username" value="#{usuarioBean.usuario.username}" validator="usernameValidator">
+				</p:inputText>
+				<p:message for="username"/>
+				<p:outputLabel value="Password" for="password"/>
+				<p:password id="password" value="#{usuarioBean.usuario.password}"/>
+				<p:message for="password"/>
+				<p:outputLabel value="Estado" for="estado"/>
+				<p:selectOneMenu id="estado" value="#{usuarioBean.selectEstado}" converter="estadoConverter">
+				<f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+				<f:selectItems value="#{usuarioBean.listEstado}"/>
+				<p:ajax event="change" update="mun" listener="#{usuarioBean.carregarMunicipios()}"/>
+				</p:selectOneMenu>
+				<p:message for="estado"/>
+				<p:outputLabel value="Municipio" for="mun"/>
+				<p:selectOneMenu id="mun"
+				value="#{usuarioBean.endereco.municipio}"
+					converter="cidadeConverter">
+					<f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+					<f:selectItems value="#{usuarioBean.listMunicipios}"/>
+				</p:selectOneMenu>
+			
+			</p:panelGrid>
+			
+		</h:form>
+	</p:panel>
+</h:body>
+</html>

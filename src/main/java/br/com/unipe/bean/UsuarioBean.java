@@ -24,58 +24,131 @@ public class UsuarioBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Usuario usuario;
+	
+	private Usuario usuarios;
 	private Endereco endereco;
-	private Estados estado;
-	private Cidades cidade;
-	private Sexo sexo;
+	public Endereco getEndereco() {
+		return endereco;
+	}
 
-	private List<Usuario> listUsuario = new ArrayList<Usuario>();
-	private List<Endereco> listEndereco;
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	private List<SelectItem> listSexos;
+	private List<SelectItem> listCidades;
+	private List<Usuario> listUsuarios;
+	
 
 	private Estados selectEstado;
-	private List<SelectItem> listEstado;
-	private List<SelectItem> listCidade;
-	private List<SelectItem> listSexo;
-
-
+	private List<SelectItem> listEstados;
+	private List<SelectItem> listMunicipios;
+	
+	private List<String> listLogradouros;
+	
 	private String filtro;
-
+	
 	public UsuarioBean() {
-		usuario = new Usuario();
-		listCidade = new ArrayList<>();
-		listUsuario = new ArrayList<>();
-		listUsuario = Usuarios.INSTANCE.allUsers();
+		usuarios = new Usuario();
+		listMunicipios = new ArrayList<>();
+		listUsuarios = new ArrayList<>();
+		listUsuarios = Usuarios.INSTANCE.allUsers();
+	}
+
+
+	public Usuario getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(Usuario usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public List<Usuario> getListUsuarios() {
+		return listUsuarios;
+	}
+
+	public void setListUsuarios(List<Usuario> listUsuarios) {
+		this.listUsuarios = listUsuarios;
+	}
+
+	public Estados getSelectEstado() {
+		return selectEstado;
+	}
+
+	public void setSelectEstado(Estados selectEstado) {
+		this.selectEstado = selectEstado;
+	}
+
+	public List<SelectItem> getListMunicipios() {
+		return listMunicipios;
+	}
+
+	public void setListMunicipios(List<SelectItem> listMunicipios) {
+		this.listMunicipios = listMunicipios;
+	}
+
+	public List<SelectItem> getListSexos() {
+		return listSexos;
+	}
+
+	public void setListSexos(List<SelectItem> listSexos) {
+		this.listSexos = listSexos;
+	}
+
+	public List<SelectItem> getListCidades() {
+		return listCidades;
+	}
+
+	public void setListCidades(List<SelectItem> listCidades) {
+		this.listCidades = listCidades;
+	}
+
+	public List<SelectItem> getListEstados() {
+		return listEstados;
+	}
+
+	public void setListEstados(List<SelectItem> listEstados) {
+		this.listEstados = listEstados;
+	}
+
+	public List<String> getListLogradouros() {
+		return listLogradouros;
+	}
+
+	public void setListLogradouros(List<String> listLogradouros) {
+		this.listLogradouros = listLogradouros;
 	}
 
 	@PostConstruct
 	public void initSexo() {
-		listSexo = new ArrayList<>();
+		listSexos = new ArrayList<>();
 		for (Sexo s : Sexo.values()) {
-			listSexo.add(new SelectItem(s, s.getLabel()));
+			listSexos.add(new SelectItem(s, s.getLabel()));
 		}
 
-		listCidade = new ArrayList<>();
+		listCidades = new ArrayList<>();
 		for (Cidades c : Cidades.values()) {
-			listCidade.add(new SelectItem(c, c.getLabel()));
+			listCidades.add(new SelectItem(c, c.getLabel()));
 		}
 
-		listEstado = new ArrayList<>();
+		listEstados = new ArrayList<>();
 		for (Estados e : Estados.values()) {
-			listCidade.add(new SelectItem(e, e.getLabel()));
+			listCidades.add(new SelectItem(e, e.getLabel()));
 		}
 	}
 
-	public void carregarCidades() {
-		listCidade = new ArrayList<>();
+	public void carregarMunicipios() {
+		listMunicipios = new ArrayList<>();
 		for (Cidades cidades : Cidades.values()) {
 			if (selectEstado.name().equals(cidades.getEstado()))
-				listCidade.add(new SelectItem(cidade, cidade.getLabel()));
+				listMunicipios.add(new SelectItem(cidades, cidades.getLabel()));
 		}
 	}
 
 	public String prepararCadastro() {
-		usuario = new Usuario();
+		usuarios = new Usuario();
 		return "cadastroUsuario";
 	}
 
@@ -84,91 +157,49 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public List<Usuario> getListUsuario() {
-		return listUsuario;
+		return listUsuarios;
 	}
 
-
 	public void filtrarTabela() {
-		listUsuario = new ArrayList<>();
+		listUsuarios = new ArrayList<>();
 		for (Usuario u : Usuarios.INSTANCE.allUsers()) {
 			if (u.getNome().contains(filtro)) {
-				listUsuario.add(u);
+				listUsuarios.add(u);
 			}
 		}
 	}
 
 	public Usuario getUsuario() {
-		return usuario;
+		return usuarios;
 	}
 
 	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public Estados getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estados estado) {
-		this.estado = estado;
-	}
-
-	public Cidades getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(Cidades cidade) {
-		this.cidade = cidade;
-	}
-
-	public Sexo getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(Sexo sexo) {
-		this.sexo = sexo;
-	}
-
-	public List<Endereco> getListEndereco() {
-		return listEndereco;
-	}
-
-	public void setListEndereco(List<Endereco> listEndereco) {
-		this.listEndereco = listEndereco;
+		this.usuarios = usuario;
 	}
 
 	public List<SelectItem> getListEstado() {
-		return listEstado;
+		return listEstados;
 	}
 
 	public void setListEstado(List<SelectItem> listEstado) {
-		this.listEstado = listEstado;
+		this.listEstados = listEstado;
 	}
 
 	public List<SelectItem> getListCidade() {
-		return listCidade;
+		return listCidades;
 	}
 
 	public void setListCidade(List<SelectItem> listCidade) {
-		this.listCidade = listCidade;
+		this.listCidades = listCidade;
 	}
 
 	public List<SelectItem> getListSexo() {
-		return listSexo;
+		return listSexos;
 	}
 
 	public void setListSexo(List<SelectItem> listSexo) {
-		this.listSexo = listSexo;
+		this.listSexos = listSexo;
 	}
-
 
 	public String getFiltro() {
 		return filtro;
@@ -178,8 +209,8 @@ public class UsuarioBean implements Serializable {
 		this.filtro = filtro;
 	}
 
-	public void setListUsuario(List<Usuario> listUsuario) {
-		this.listUsuario = listUsuario;
+	public void setListUsuario(List<Usuario> listusuarios) {
+		this.listUsuarios = listusuarios;
 	}
 
 }

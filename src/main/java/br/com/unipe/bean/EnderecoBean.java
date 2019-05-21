@@ -4,18 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
 
 import br.com.unipe.entidade.Endereco;
-import br.com.unipe.enumerator.Cidades;
 import br.com.unipe.enumerator.Enderecos;
-import br.com.unipe.enumerator.Estados;
-import br.com.unipe.enumerator.Logradouro;
 
-@ManagedBean(name = "usuarioBean")
+@ManagedBean(name = "enderecoBean")
 @SessionScoped
 public class EnderecoBean implements Serializable {
 
@@ -25,45 +20,16 @@ public class EnderecoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Endereco endereco;
-	private Logradouro logradouro;
-	private Cidades cidade;
-	private Estados estado;
 
-	private List<Endereco> listEndereco = new ArrayList<Endereco>();
-	private List<Logradouro> listLogradouro;
-
-	private Estados selectEstado;
-	private List<SelectItem> listCidade;
-	private List<SelectItem> listEstado;
+	private List<Endereco> listEndereco;
 
 	private String filtro;
 
 	public EnderecoBean() {
 		endereco = new Endereco();
-		listCidade = new ArrayList<>();
 		listEndereco = new ArrayList<>();
 		listEndereco = Enderecos.INSTANCE.allAdress();
-	}
 
-	@PostConstruct
-	public void initCidade() {
-		listCidade = new ArrayList<>();
-		for (Cidades c : Cidades.values()) {
-			listCidade.add(new SelectItem(c, c.getLabel()));
-		}
-
-		listEstado = new ArrayList<>();
-		for (Estados e : Estados.values()) {
-			listEstado.add(new SelectItem(e, e.getLabel()));
-		}
-	}
-
-	public void carregarCidades() {
-		listCidade = new ArrayList<>();
-		for (Cidades cidades : Cidades.values()) {
-			if (selectEstado.name().equals(cidades.getEstado()))
-				listCidade.add(new SelectItem(cidades, cidades.getLabel()));
-		}
 	}
 
 	public String prepararCadastro() {
@@ -99,54 +65,6 @@ public class EnderecoBean implements Serializable {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-	}
-
-	public Logradouro getLogradouro() {
-		return logradouro;
-	}
-
-	public void setLogradouro(Logradouro logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public Cidades getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(Cidades cidade) {
-		this.cidade = cidade;
-	}
-
-	public Estados getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estados estado) {
-		this.estado = estado;
-	}
-
-	public List<Logradouro> getListLogradouro() {
-		return listLogradouro;
-	}
-
-	public void setListLogradouro(List<Logradouro> listLogradouro) {
-		this.listLogradouro = listLogradouro;
-	}
-
-	public List<SelectItem> getListCidade() {
-		return listCidade;
-	}
-
-	public void setListCidade(List<SelectItem> listCidade) {
-		this.listCidade = listCidade;
-	}
-
-	public List<SelectItem> getListEstado() {
-		return listEstado;
-	}
-
-	public void setListEstado(List<SelectItem> listEstado) {
-		this.listEstado = listEstado;
 	}
 
 	public String getFiltro() {

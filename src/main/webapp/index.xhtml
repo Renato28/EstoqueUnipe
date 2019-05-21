@@ -7,44 +7,17 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Renato Nobrega</title>
+	<title>Home</title>
 </h:head>
 <h:body>
-	<p:tooltip />
-
-	<h:form>
-		<p:messages id="messages" showDetail="true" closable="true">
-			<p:autoUpdate />
-		</p:messages>
-
-		<p:commandButton value="Info" action="#{messagesView.info}" />
-		<p:commandButton value="Warn" action="#{messagesView.warn}" />
-		<p:commandButton value="Error" action="#{messagesView.error}" />
-		<p:commandButton value="Fatal" action="#{messagesView.fatal}" />
-	</h:form>
-
-	<p:separator />
-
-	<h:form>
-		<h:panelGrid id="grid" columns="3" cellpadding="5">
-			<p:outputLabel for="default" value="Default:" />
-			<p:inputText id="default" required="true" />
-			<p:message for="default" />
-
-			<p:outputLabel for="txt" value="Text:" />
-			<p:inputText id="txt" required="true" />
-			<p:message for="txt" display="text" />
-
-			<p:outputLabel for="icon" value="Icon:" />
-			<p:inputText id="icon" required="true" />
-			<p:message for="icon" display="icon" />
-
-			<p:outputLabel for="tt" value="Tooltip:" />
-			<p:inputText id="tt" required="true" />
-			<p:message for="tt" display="tooltip" />
-		</h:panelGrid>
-
-		<p:commandButton id="submitButton" value="Submit" update="grid" />
-	</h:form>
+	<p:panel header="Seja Bem-Vindo">
+		<br />
+		<h:form>
+			<p:menu>
+				<p:menuitem action="listarUsuarios" value="Listar Usuários"
+					ajax="false" />
+			</p:menu>
+		</h:form>
+	</p:panel>
 </h:body>
 </html>
