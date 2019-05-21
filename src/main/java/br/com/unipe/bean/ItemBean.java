@@ -5,15 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
-import br.com.unipe.dao.ItemDaoImpl;
 import br.com.unipe.entidade.Item;
 import br.com.unipe.enumerator.Itens;
 import br.com.unipe.enumerator.TipoItem;
 
-@Named
+@ManagedBean(name = "itemBean")
 @SessionScoped
 public class ItemBean implements Serializable {
 
@@ -26,7 +25,6 @@ public class ItemBean implements Serializable {
 
 	private Item selectItem;
 	private List<Item> listItem;
-	private ItemDaoImpl itemDaoImpl;
 
 	private String filtro;
 
@@ -61,29 +59,8 @@ public class ItemBean implements Serializable {
 		return "";
 	}
 
-	public String adicionarItem(Item item) {
-		itemDaoImpl.salvar(item);
-		return "listaItem";
-	}
-
 	public List<Item> getListItem() {
 		return listItem;
-	}
-
-	public String atualizarItem(Item item) {
-		itemDaoImpl.atualizar(item);
-		return "listaItem";
-	}
-
-	public String removerItem(long id) {
-		itemDaoImpl.excluir(id);
-		return "listaItem";
-	}
-
-	@PostConstruct
-	public void inicializarTabela() {
-		itemDaoImpl = new ItemDaoImpl();
-		listItem = itemDaoImpl.ListItem();
 	}
 
 	public void filtrarTabela() {
@@ -113,14 +90,6 @@ public class ItemBean implements Serializable {
 
 	public void setListItem(List<Item> listItem) {
 		this.listItem = listItem;
-	}
-
-	public ItemDaoImpl getItemDaoImpl() {
-		return itemDaoImpl;
-	}
-
-	public void setItemDaoImpl(ItemDaoImpl itemDaoImpl) {
-		this.itemDaoImpl = itemDaoImpl;
 	}
 
 }

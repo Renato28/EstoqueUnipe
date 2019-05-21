@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
-import javax.inject.Named;
 
-import br.com.unipe.dao.UsuarioDaoImpl;
 import br.com.unipe.entidade.Endereco;
 import br.com.unipe.entidade.Usuario;
 import br.com.unipe.enumerator.Cidades;
@@ -17,7 +16,7 @@ import br.com.unipe.enumerator.Estados;
 import br.com.unipe.enumerator.Sexo;
 import br.com.unipe.enumerator.Usuarios;
 
-@Named
+@ManagedBean(name = "usuarioBean")
 @SessionScoped
 public class UsuarioBean implements Serializable {
 
@@ -39,7 +38,6 @@ public class UsuarioBean implements Serializable {
 	private List<SelectItem> listCidade;
 	private List<SelectItem> listSexo;
 
-	private UsuarioDaoImpl usuarioDaoImpl;
 
 	private String filtro;
 
@@ -85,30 +83,10 @@ public class UsuarioBean implements Serializable {
 		return "";
 	}
 
-	public String adicionarUsuario(Usuario usuario) {
-		usuarioDaoImpl.salvar(usuario);
-		return "listaUsuario";
-	}
-
 	public List<Usuario> getListUsuario() {
 		return listUsuario;
 	}
 
-	public String atualizarUsuario(Usuario usuario) {
-		usuarioDaoImpl.atualizar(usuario);
-		return "listaUsuario";
-	}
-
-	public String excluirUsuario(long id) {
-		usuarioDaoImpl.excluir(id);
-		return "listaUsuario";
-	}
-
-	@PostConstruct
-	public void inicializarTabela() {
-		usuarioDaoImpl = new UsuarioDaoImpl();
-		listUsuario = usuarioDaoImpl.ListUsuario();
-	}
 
 	public void filtrarTabela() {
 		listUsuario = new ArrayList<>();
@@ -191,13 +169,6 @@ public class UsuarioBean implements Serializable {
 		this.listSexo = listSexo;
 	}
 
-	public UsuarioDaoImpl getUsuarioDaoImpl() {
-		return usuarioDaoImpl;
-	}
-
-	public void setUsuarioDaoImpl(UsuarioDaoImpl usuarioDaoImpl) {
-		this.usuarioDaoImpl = usuarioDaoImpl;
-	}
 
 	public String getFiltro() {
 		return filtro;

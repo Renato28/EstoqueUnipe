@@ -5,18 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
-import javax.inject.Named;
 
-import br.com.unipe.dao.EnderecoDaoImpl;
 import br.com.unipe.entidade.Endereco;
 import br.com.unipe.enumerator.Cidades;
 import br.com.unipe.enumerator.Enderecos;
 import br.com.unipe.enumerator.Estados;
 import br.com.unipe.enumerator.Logradouro;
 
-@Named
+@ManagedBean(name = "usuarioBean")
 @SessionScoped
 public class EnderecoBean implements Serializable {
 
@@ -36,7 +35,6 @@ public class EnderecoBean implements Serializable {
 	private Estados selectEstado;
 	private List<SelectItem> listCidade;
 	private List<SelectItem> listEstado;
-	private EnderecoDaoImpl enderecoDaoImpl;
 
 	private String filtro;
 
@@ -77,30 +75,13 @@ public class EnderecoBean implements Serializable {
 		return "";
 	}
 
-	public String adicionarEndereco(Endereco endereco) {
-		enderecoDaoImpl.salvar(endereco);
-		return "listaEndereco";
+	public String adicionarEndereco() {
+		Enderecos.INSTANCE.addAdress(endereco);
+		return "listarEnderecos";
 	}
 
 	public List<Endereco> getListEndereco() {
 		return listEndereco;
-	}
-
-	public String atualizarEndereco(Endereco endereco) {
-		enderecoDaoImpl.atualizar(endereco);
-		return "listaEndereco";
-	}
-
-	public String excluirEndereco(long id) {
-		enderecoDaoImpl.excluir(id);
-		return "listaEndereco";
-	}
-
-	@PostConstruct
-	public void inicializarTela() {
-		enderecoDaoImpl = new EnderecoDaoImpl();
-		listEndereco = enderecoDaoImpl.ListEndereco();
-
 	}
 
 	public void filtrarTabela() {
@@ -166,14 +147,6 @@ public class EnderecoBean implements Serializable {
 
 	public void setListEstado(List<SelectItem> listEstado) {
 		this.listEstado = listEstado;
-	}
-
-	public EnderecoDaoImpl getEnderecoDaoImpl() {
-		return enderecoDaoImpl;
-	}
-
-	public void setEnderecoDaoImpl(EnderecoDaoImpl enderecoDaoImpl) {
-		this.enderecoDaoImpl = enderecoDaoImpl;
 	}
 
 	public String getFiltro() {

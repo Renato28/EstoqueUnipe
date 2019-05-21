@@ -3,76 +3,59 @@ package br.com.unipe.entidade;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.unipe.enumerator.Sexo;
 import br.com.unipe.enumerator.TipoPessoa;
 
-@Entity
-@Table(name = "Usuario")
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private long id;
 	@Length(min = 30)
-	@Column(nullable = false)
+
 	@NotEmpty
 	private String nome;
 
-	@Column(nullable = false)
 	@NotEmpty
 	private String username;
 
-	@Column(nullable = false)
 	@Length(min = 8, max = 16)
 	@NotEmpty
 	private String password;
-	
-	@Column(nullable = false)
+
 	@NotEmpty
 	private Endereco endereco;
 
-	@Column(nullable = false)
 	@NotEmpty
 	@Email
 	private String email;
 
 	@Past
-	@Column(nullable = false)
+
 	@NotEmpty
 	private Date dataNasc;
 
-	@Column(nullable = false)
 	@NotEmpty
 	private Sexo sexo;
 
-	@Column(nullable = false)
 	@NotEmpty
 	private TipoPessoa pessoa;
 
-	@Column(nullable = false)
 	@NotEmpty
 	@CPF
 	private String cpf;
 
-	@Column(nullable = false)
 	@NotEmpty
 	@CNPJ
 	private String cnpj;

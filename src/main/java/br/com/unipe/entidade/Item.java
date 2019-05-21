@@ -2,15 +2,11 @@ package br.com.unipe.entidade;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.unipe.enumerator.TipoItem;
 
-@Entity
-@Table(name = "Item")
+
 public class Item implements Serializable{
 
 	/**
@@ -18,13 +14,11 @@ public class Item implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Column(nullable = false)
+	
 	@NotEmpty
 	private String nome;
-	@Column(nullable = false)
 	@NotEmpty
 	private Double quantidade;
-	@Column(nullable = false)
 	@NotEmpty
 	private TipoItem item;
 

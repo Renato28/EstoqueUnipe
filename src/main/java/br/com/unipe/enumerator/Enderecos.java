@@ -23,4 +23,5 @@ public enum Enderecos {
 	public List<Endereco> allAdress(){
 		return listEnderecos;
 	}
+	
 }
