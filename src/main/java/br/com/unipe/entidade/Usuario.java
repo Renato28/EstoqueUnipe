@@ -1,5 +1,6 @@
 package br.com.unipe.entidade;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
@@ -11,7 +12,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.unipe.enumerator.Sexo;
 
-public class Usuario {
+public class Usuario implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Length(min = 30)
 	@NotEmpty

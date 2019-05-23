@@ -1,13 +1,20 @@
 package br.com.unipe.entidade;
 
+import java.io.Serializable;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.unipe.enumerator.Cidades;
 import br.com.unipe.enumerator.Estados;
 import br.com.unipe.enumerator.Logradouro;
 
-public class Endereco {
+public class Endereco implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@NotEmpty
 	private Logradouro logradouros;
 	

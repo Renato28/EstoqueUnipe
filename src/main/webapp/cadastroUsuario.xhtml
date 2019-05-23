@@ -10,99 +10,96 @@
 	<ui:define name="content">
 		<p:messages showDetail="true" showSummary="false" globalOnly="true" />
 
+		<p:panel title="Cadastro de Usuário">
+			<h:form id="form" prependId="false">
+				<p:panelGrid columns="1">
+					<p:column>
+						<h:outputLabel value="Nome:" for="nome" />
+						<p:inputText id="nome" value="#{usuarioBean.usuario.nome}"
+							required="true">
+						</p:inputText>
+					</p:column>
+					<p:message for="nome" />
+					<p:column>
+						<p:outputLabel for="username" value="Username:" />
+						<p:inputText id="username" validator="usernameValidator"
+							value="#{usuarioBean.usuario.username}" required="true">
+						</p:inputText>
+					</p:column>
+					<p:message for="username" />
+					<p:column>
+						<p:outputLabel for="passwd" value="Password:" />
+						<p:password id="passwd" maxlength="8"
+							value="#{usuarioBean.usuario.password}">
+						</p:password>
+					</p:column>
+					<p:message for="passwd" />
+					<p:column>
+						<p:outputLabel for="cep" value="Cep:" />
+						<p:inputText id="cep" value="#{enderecoBean.endereco.cep}">
+						</p:inputText>
+					</p:column>
+					<p:message for="cep" />
+					<p:column>
+						<p:outputLabel for="email" value="Email:" />
+						<p:inputText id="email" validator="emailValidator"
+							value="#{usuarioBean.usuario.email}">
+						</p:inputText>
+					</p:column>
+					<p:message for="email" />
+					<p:column>
+						<p:outputLabel value="Data de Nascimento:" for="dtNasc" />
+						<h:inputText id="dtNasc" value="#{usuarioBean.usuario.dtNasc}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:inputText>
+					</p:column>
+					<p:message for="dtNasc" />
+					<p:column>
+						<p:outputLabel value="Sexo:" for="sexo" />
+						<p:selectOneRadio id="sexo" value="#{usuarioBean.usuario.sexo}"
+							converter="sexoConverter">
+							<f:selectItems value="#{usuarioBean.listSexo}" />
+						</p:selectOneRadio>
+					</p:column>
+					<p:message for="sexo" />
+					<p:column>
+						<h:outputLabel id="lbPessoa" value="Pessoa: " for="pessoa" />
+						<h:selectOneRadio id="pessoa"
+							value="#{usuarioBean.usuario.pessoa}" required="true"
+							requiredMessage="Campo [Pessoa] é obrigatório.">
+							<f:selectItem itemLabel="Jurídica" itemValue="Jurídica" />
+							<f:selectItem itemLabel="Física" itemValue="Física" />
+							<p:ajax event="change" update="pnlPessoa, pnlCpfOUCnpj"
+								process="@this" />
+						</h:selectOneRadio>
 
-		<h:form>
+						<p:outputPanel id="pnlPessoa" style="float: right;">
 
-		</h:form>
+							<h:outputLabel id="lbCpf" value="CPF:" for="cpf"
+								rendered="#{usuarioBean.usuario.pessoa=='Física'}" />
+							<h:outputLabel id="lbCnpj" value="CNPJ:" for="cnpj"
+								rendered="#{usuarioBean.usuario.pessoa=='Jurídica'}" />
 
-		<h:form id="form" prependId="false">
-			<p:panel columns="1">
-				<p:column>
-				<h:outputLabel value="Nome:" for="nome" />
-				<p:inputText id="nome" value="#{usuarioBean.usuario.nome}"
-					required="true">
-				</p:inputText>
-				</p:column>
-				<p:message for="nome" />
-				<p:column>
-				<p:outputLabel for="username" value="Username:" />
-				<p:inputText id="username" validator="usernameValidator"
-					value="#{usuarioBean.usuario.username}" required="true">
-				</p:inputText>
-				</p:column>
-				<p:message for="username" />
-				<p:column>
-				<p:outputLabel for="passwd" value="Password:" />
-				<p:password id="passwd" maxlength="8"
-					value="#{usuarioBean.usuario.password}">
-				</p:password>
-				</p:column>
-				<p:message for="passwd" />
-				<p:column>
-				<p:outputLabel for="cep" value="Cep:" />
-				<p:inputText id="cep" value="#{enderecoBean.endereco.cep}">
-				</p:inputText>
-				</p:column>
-				<p:message for="cep" />
-				<p:column>
-				<p:outputLabel for="email" value="Email:" />
-				<p:inputText id="email" validator="emailValidator"
-					value="#{usuarioBean.usuario.email}">
-				</p:inputText>
-				</p:column>
-				<p:message for="email" />
-				<p:column>
-				<p:outputLabel value="Data de Nascimento: (@Past)" for="dtNasc" />
-				<h:inputText id="dtNasc" value="#{usuarioBean.usuario.dtNasc}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</h:inputText>
-				</p:column>
-				<p:message for="dtNasc" />
-				<p:column>
-				<p:outputLabel value="Sexo:" for="sexo" />
-				<p:selectOneRadio id="sexo" value="#{usuarioBean.usuario.sexo}"
-					converter="sexoConverter">
-					<f:selectItems value="#{usuarioBean.listSexo}" />
-				</p:selectOneRadio>
-				</p:column>
-				<p:message for="sexo" />
-				<p:column>
-				<h:outputLabel id="lbPessoa" value="Pessoa: " for="pessoa" />
-				<h:selectOneRadio id="pessoa" value="#{usuarioBean.usuario.pessoa}"
-					required="true" requiredMessage="Campo [Pessoa] é obrigatório.">
-					<f:selectItem itemLabel="Jurídica" itemValue="Jurídica" />
-					<f:selectItem itemLabel="Física" itemValue="Física" />
-					<p:ajax event="change" update="pnlPessoa, pnlCpfOUCnpj"
-						process="@this" />
-				</h:selectOneRadio>
+						</p:outputPanel>
 
-				<p:outputPanel id="pnlPessoa" style="float: right;">
+						<p:outputPanel id="pnlCpfOUCnpj" style="float: left;">
 
-					<h:outputLabel id="lbCpf" value="CPF:" for="cpf"
-						rendered="#{usuarioBean.usuario.pessoa=='Física'}" />
-					<h:outputLabel id="lbCnpj" value="CNPJ:" for="cnpj"
-						rendered="#{usuarioBean.usuario.pessoa=='Jurídica'}" />
+							<p:inputMask mask="999.999.999-99" id="cpf" size="25"
+								rendered="#{usuarioBean.usuario.pessoa=='Física'}"
+								value="#{usuarioBean.usuario.cpf}" style="float: right;" />
 
-				</p:outputPanel>
+							<p:inputMask mask="99.999.999/9999-99" id="cnpj" size="25"
+								rendered="#{usuarioBean.usuario.pessoa=='Jurídica'}"
+								value="#{usuarioBean.usuario.cnpj}" style="float: right;" />
 
-				<p:outputPanel id="pnlCpfOUCnpj" style="float: left;">
+						</p:outputPanel>
+					</p:column>
+				</p:panelGrid>
 
-					<p:inputMask mask="999.999.999-99" id="cpf" size="25"
-						rendered="#{usuarioBean.usuario.pessoa=='Física'}"
-						value="#{usuarioBean.usuario.cpf}" style="float: right;" />
-
-					<p:inputMask mask="99.999.999/9999-99" id="cnpj" size="25"
-						rendered="#{usuarioBean.usuario.pessoa=='Jurídica'}"
-						value="#{usuarioBean.usuario.cnpj}" style="float: right;" />
-
-				</p:outputPanel>
-				</p:column>
-			</p:panel>
-
-			<p:commandButton value="cadastrar"
-				action="#{usuarioBean.adicionarUsuario}" ajax="false" />
-		</h:form>
-
+				<p:commandButton value="cadastrar"
+					action="#{usuarioBean.adicionarUsuario}" ajax="false" />
+			</h:form>
+		</p:panel>
 	</ui:define>
 </ui:composition>
 </html>
