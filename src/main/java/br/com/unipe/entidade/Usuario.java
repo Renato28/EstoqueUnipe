@@ -1,64 +1,62 @@
 package br.com.unipe.entidade;
 
-import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.br.CNPJ;
-import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.unipe.enumerator.Sexo;
-import br.com.unipe.enumerator.TipoPessoa;
 
-
-public class Usuario implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Usuario {
 
 	@Length(min = 30)
-
 	@NotEmpty
 	private String nome;
 
 	@NotEmpty
 	private String username;
 
-	@Length(min = 8, max = 16)
+	@Length(min = 8)
 	@NotEmpty
 	private String password;
 
-	@NotEmpty
 	private Endereco endereco;
 
+	@Email
 	@NotEmpty
-	@Email(message = "Email não pode ser nulo!")
 	private String email;
 
 	@Past
+	private Date dtNasc;
 
-	@NotEmpty
-	private Date dataNasc;
-
-	@NotEmpty
+	@NotNull
 	private Sexo sexo;
 
-	@NotEmpty
-	private TipoPessoa pessoa;
+	private Pessoa pessoa;
 
-	@NotEmpty
-	@CPF
 	private String cpf;
 
-	@NotEmpty
-	@CNPJ
 	private String cnpj;
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
 
 	public String getNome() {
 		return nome;
@@ -100,12 +98,12 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public Date getDataNasc() {
-		return dataNasc;
+	public Date getDtNasc() {
+		return dtNasc;
 	}
 
-	public void setDataNasc(Date dataNasc) {
-		this.dataNasc = dataNasc;
+	public void setDtNasc(Date dtNasc) {
+		this.dtNasc = dtNasc;
 	}
 
 	public Sexo getSexo() {
@@ -116,28 +114,12 @@ public class Usuario implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public TipoPessoa getPessoa() {
+	public Pessoa getPessoa() {
 		return pessoa;
 	}
 
-	public void setPessoa(TipoPessoa pessoa) {
+	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
 	}
 
 }

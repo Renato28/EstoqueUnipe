@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Agenda</title>
+</h:head>
+<h:body>
+	<ui:param name="usuario" value="Renato" />
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
+
+	<p:panelGrid columns="2" 
+	columnClasses="ui-g-4,ui-g-8" 
+	layout="grid">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml"></ui:include>
+		</ui:insert>
+
+		<ui:insert name="content" />
+	</p:panelGrid>
+
+	<ui:insert name="footer">
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+</h:body>
+</html>

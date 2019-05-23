@@ -1,61 +1,50 @@
 package br.com.unipe.entidade;
 
-import java.io.Serializable;
-
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.unipe.enumerator.Cidades;
 import br.com.unipe.enumerator.Estados;
 import br.com.unipe.enumerator.Logradouro;
 
-public class Endereco implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
+public class Endereco {
 	
 	@NotEmpty
-	private Logradouro logradouro;
+	private Logradouro logradouros;
 	
 	@NotEmpty
-	private Cidades municipio;
+	private Cidades municipios;
 	
 	@NotEmpty
-	private Estados estado;
+	private Estados estados;
 	
 	@NotEmpty
-	@Length(min = 1, max = 9999)
 	private Integer numero;
-	@Length(min = 9)
 	
 	@NotEmpty
 	private String cep;
 
-	public Logradouro getLogradouro() {
-		return logradouro;
+	public Logradouro getLogradouros() {
+		return logradouros;
 	}
 
-	public void setLogradouro(Logradouro logradouro) {
-		this.logradouro = logradouro;
+	public void setLogradouros(Logradouro logradouros) {
+		this.logradouros = logradouros;
 	}
 
-	public Cidades getMunicipio() {
-		return municipio;
+	public Cidades getMunicipios() {
+		return municipios;
 	}
 
-	public void setMunicipio(Cidades municipio) {
-		this.municipio = municipio;
+	public void setMunicipios(Cidades municipios) {
+		this.municipios = municipios;
 	}
 
-	public Estados getEstado() {
-		return estado;
+	public Estados getEstados() {
+		return estados;
 	}
 
-	public void setEstado(Estados estado) {
-		this.estado = estado;
+	public void setEstados(Estados estados) {
+		this.estados = estados;
 	}
 
 	public Integer getNumero() {

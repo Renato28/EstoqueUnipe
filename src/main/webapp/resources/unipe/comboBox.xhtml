@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<composite:interface>
+	<composite:attribute name="id" required="true" />
+	<composite:attribute name="label" required="true" />
+	<composite:attribute name="value" required="true" />
+	<composite:attribute name="converter" 
+	default="#{dummyConverter}" />
+	<composite:attribute name="lista" required="true" />
+</composite:interface>
+<composite:implementation>
+	<p:outputLabel value="#{cc.attrs.label}" 
+	for="#{cc.attrs.id}" />
+	<p:selectOneMenu id="#{cc.attrs.id}" 
+	value="#{cc.attrs.value}"
+		converter="#{cc.attrs.converter}">
+		<f:selectItem itemLabel="Selecione..." 
+		noSelectionOption="true" />
+		<f:selectItems value="#{cc.attrs.lista}" />
+	</p:selectOneMenu>
+	<p:message for="#{cc.attrs.id}" />
+</composite:implementation>
+</html>

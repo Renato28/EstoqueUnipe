@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<composite:interface>
+	<composite:attribute name="id" required="true" />
+	<composite:attribute name="label" required="true" />
+	<composite:attribute name="value" required="true" />
+	<composite:attribute name="required" required="true" />
+	<composite:attribute name="validator" />
+</composite:interface>
+<composite:implementation>
+	<p:outputLabel value="#{cc.attrs.label}" for="#{cc.attrs.id}" />
+	<p:inputText id="#{cc.attrs.id}" value="#{cc.attrs.value}"
+		required="#{cc.attrs.required}" validator="#{cc.attrs.validator}">
+	</p:inputText>
+	<p:message for="#{cc.attrs.id}" />
+</composite:implementation>
+</html>
