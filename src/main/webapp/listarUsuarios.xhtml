@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="content">
+		<p:panel header="Listar Usuários">
+			<h:form>
+				<p:commandButton value="Novo"
+					action="#{usuarioBean.prepararCadastro}" ajax="false">
+				</p:commandButton>
+				<p:commandButton value="Mesma Pagina"
+					action="#{usuarioBean.prepararList}">
+				</p:commandButton>
+			</h:form>
+
+			<h:form prependId="false">
+				<p:inputText value="#{usuarioBean.filtro}">
+					<p:ajax event="blur" listener="#{usuarioBean.filtrarTabela}"
+						update="tableUsuarios" />
+				</p:inputText>
+				<p:dataTable id="tableUsuarios" widgetVar="table"
+					value="#{usuarioBean.listUsuario}" var="usuario" paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" reflow="true" scrollable="true">
+					<f:facet name="header">
+						<h:outputText value="Usuários" />
+					</f:facet>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{usuario.nome}" />
+					</p:column>
+
+					<p:column headerText="Username">
+						<h:outputText value="#{usuario.username}" />
+					</p:column>
+
+					<p:column headerText="Sexo">
+						<h:outputText value="#{usuario.sexo}" />
+					</p:column>
+
+					<p:column headerText="Data Nascimento">
+						<h:outputText value="#{usuario.dtNasc}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Cidade de Nascimento">
+						<h:outputText value="#{usuario.cidadeNasc}"
+							converter="cidadeConverter" />
+					</p:column>
+
+					<p:column headerText="Ações">
+						<p:commandButton value="Detalhes" icon="fa fa-search"
+							action="#{usuarioBean.carregarDetalhes2(usuario)}"
+							update=":formDialog:dialogDetalhes"
+							oncomplete="PF('dialogDetail').show()" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+
+			<h:form id="formDialog">
+				<p:dialog id="dialogDetalhes" widgetVar="dialogDetail" modal="true">
+					<p:panelGrid id="panelDetail" columns="2">
+						<p:outputLabel value="Nome:" />
+						<h:outputText value="#{usuarioBean.usuario.nome}" />
+
+						<p:outputLabel value="Username:" />
+						<h:outputText value="#{usuarioBean.usuario.username}" />
+
+						<p:outputLabel value="Sexo:" />
+						<h:outputText value="#{usuarioBean.usuario.sexo}"
+							converter="sexoConverter" />
+
+						<p:outputLabel value="Data de Nascimento:" />
+						<h:outputText value="#{usuarioBean.usuario.dtNasc}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:panelGrid>
+				</p:dialog>
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

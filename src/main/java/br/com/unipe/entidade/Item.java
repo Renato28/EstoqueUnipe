@@ -20,7 +20,16 @@ public class Item implements Serializable{
 	@NotEmpty
 	private Double quantidade;
 	@NotEmpty
-	private TipoItem item;
+	private TipoItem Tipoitem;
+	private String option;
+	
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
+	}
 
 	public String getNome() {
 		return nome;
@@ -39,11 +48,11 @@ public class Item implements Serializable{
 	}
 
 	public TipoItem getItem() {
-		return item;
+		return Tipoitem;
 	}
 
 	public void setItem(TipoItem item) {
-		this.item = item;
+		this.Tipoitem = item;
 	}
 
 }

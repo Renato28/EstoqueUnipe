@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="content">
+		<h:outputText value="Detalhes" />
+		<br />
+		<h:form>
+			<h:commandLink value="Listar Usuários" action="listarUsuarios" />
+		</h:form>
+
+		<h:outputLabel value="Nome:" />
+		<h:outputText value="#{usuarioBean.usuario.nome}" />
+		<br />
+
+		<h:outputLabel value="Username:" />
+		<h:outputText value="#{usuarioBean.usuario.username}" />
+		<br />
+
+		<h:outputLabel value="Sexo:" />
+		<h:outputText value="#{usuarioBean.usuario.sexo}" />
+		<br />
+
+		<h:outputLabel value="Data de Nascimento:" />
+		<h:outputText value="#{usuarioBean.usuario.dtNasc}" />
+		<br />
+
+	</ui:define>
+</ui:composition>
+</html>
