@@ -16,7 +16,7 @@
 		</h:form>
 
 		<h:form id="form" prependId="false">
-			<p:panelGrid columns="1">
+			<p:panel columns="1">
 				<p:column>
 				<h:outputLabel value="Nome:" for="nome" />
 				<p:inputText id="nome" value="#{usuarioBean.usuario.nome}"
@@ -52,7 +52,7 @@
 				</p:column>
 				<p:message for="email" />
 				<p:column>
-				<p:outputLabel value="Data de Nascimento:" for="dtNasc" />
+				<p:outputLabel value="Data de Nascimento: (@Past)" for="dtNasc" />
 				<h:inputText id="dtNasc" value="#{usuarioBean.usuario.dtNasc}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:inputText>
@@ -97,7 +97,7 @@
 
 				</p:outputPanel>
 				</p:column>
-			</p:panelGrid>
+			</p:panel>
 
 			<p:commandButton value="cadastrar"
 				action="#{usuarioBean.adicionarUsuario}" ajax="false" />
