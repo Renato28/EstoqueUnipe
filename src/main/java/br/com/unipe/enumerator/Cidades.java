@@ -1,22 +1,22 @@
 package br.com.unipe.enumerator;
 
-public enum Municipios {
+public enum Cidades {
 
-	JP("Joï¿½o Pessoa", "PB"), CG("Campina Grande", "PB"),
+	JP("João Pessoa", "PB"), CG("Campina Grande", "PB"),
 	RE("Recife", "PE"), OL("Olinda", "PE"),
-	NT("Natal", "RN"), MO("Mossorï¿½", "RN"),
+	NT("Natal", "RN"), MO("Mossoró", "RN"),
 	FO("Fortaleza", "CE"), JU("Juazeiro do Norte", "CE"),
 	SA("Salvador", "BA"), IT("Itabuna", "BA"),
-	SL("Sï¿½o Luiz", "MA"), IM("Imperatriz", "MA"),
+	SL("São Luiz", "MA"), IM("Imperatriz", "MA"),
 	AR("Aracaju", "SE"), LG("Lagarto", "SE"),
-	SP("Sï¿½o Paulo", "SP"), ST("Santos", "SP"),
+	SP("São Paulo", "SP"), ST("Santos", "SP"),
 	RJ("Rio de Janeiro", "RJ"), VR("Volta Redonda", "RJ"),
 	BH("Belo Horizonte", "MG"), OP("Ouro Preto", "MG");
 
 	private String label;
 	private String estado;
 
-	private Municipios(String label, String estado) {
+	private Cidades(String label, String estado) {
 
 		this.label = label;
 		this.estado = estado;

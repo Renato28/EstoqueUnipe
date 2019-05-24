@@ -5,11 +5,11 @@ public enum Estados {
 	PB("Paraiba"), 
 	PE("Pernambuco"), 
 	RN("Rio Grande do Norte"), 
-	CE("Cearï¿½"), 
+	CE("Ceará"), 
 	BA("Bahia"), 
-	MA("Maranhï¿½o"), 
+	MA("Maranhão"), 
 	SE("Sergipe"),
-	SP("Sï¿½o Paulo"), 
+	SP("São Paulo"), 
 	RJ("Rio de Janeiro"), 
 	MG("Minas Gerais");
 

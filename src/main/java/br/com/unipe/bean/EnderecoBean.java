@@ -9,7 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import br.com.unipe.entidade.Endereco;
-import br.com.unipe.enumerator.Municipios;
+import br.com.unipe.enumerator.Cidades;
 import br.com.unipe.enumerator.Enderecos;
 import br.com.unipe.enumerator.Estados;
 
@@ -23,9 +23,73 @@ public class EnderecoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Endereco endereco;
+	private List<String> listLogradouros;
+	private List<SelectItem> listMunicipios;
+	private List<SelectItem> listEstados;
+	private List<Integer> listNumeros;
+	private List<Integer> listCeps;
+
 	private List<Endereco> listEndereco;
 	private List<SelectItem> listCidades;
-	private List<String> listLogradouros;
+
+	private Estados selectEstado;
+
+	private String filtro;
+
+	public EnderecoBean() {
+
+		endereco = new Endereco();
+		listLogradouros = new ArrayList<>();
+		listMunicipios = new ArrayList<>();
+		listEstados = new ArrayList<>();
+		listNumeros = new ArrayList<>();
+		listCeps = new ArrayList<>();
+		listEndereco = new ArrayList<>();
+		listEndereco = Enderecos.INSTANCE.allAdress();
+
+	}
+
+	public void initCidades() {
+		listCidades = new ArrayList<>();
+		for (Cidades cidades : Cidades.values()) {
+			listCidades.add(new SelectItem(cidades, cidades.getLabel()));
+		}
+
+		listEstados = new ArrayList<>();
+		for (Estados estados : Estados.values()) {
+			listEstados.add(new SelectItem(estados, estados.getLabel()));
+		}
+	}
+
+	public void carregarMunicipios() {
+		listMunicipios = new ArrayList<>();
+		for (Cidades cidades : Cidades.values()) {
+			if (selectEstado.name().equals(cidades.getEstado()))
+				listMunicipios.add(new SelectItem(cidades, cidades.getLabel()));
+		}
+
+		listLogradouros = new ArrayList<>();
+		listLogradouros.add("Rua Indonésia");
+		listLogradouros.add("Rua Guatemala");
+	}
+
+	public void filtrarTabela() {
+		listEndereco = new ArrayList<>();
+		for (Endereco e : Enderecos.INSTANCE.allAdress()) {
+			if (e.getCep().contains(filtro)) {
+				listEndereco.add(e);
+			}
+		}
+	}
+
+	public String carregarDetalhes(Endereco endereco) {
+		this.endereco = endereco;
+		return "detalhesEndereco";
+	}
+
+	public void carregarDetalhes2(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
 	public List<String> getListLogradouros() {
 		return listLogradouros;
@@ -33,21 +97,6 @@ public class EnderecoBean implements Serializable {
 
 	public void setListLogradouros(List<String> listLogradouros) {
 		this.listLogradouros = listLogradouros;
-	}
-
-	private Estados selectEstado;
-	private List<SelectItem> listEstados;
-	private List<SelectItem> listMunicipios;
-
-	private String filtro;
-
-	public EnderecoBean() {
-
-		endereco = new Endereco();
-		listEndereco = new ArrayList<>();
-		listMunicipios = new ArrayList<>();
-		listEndereco = Enderecos.INSTANCE.allAdress();
-
 	}
 
 	public List<SelectItem> getListCidades() {
@@ -100,44 +149,6 @@ public class EnderecoBean implements Serializable {
 		return listEndereco;
 	}
 
-	public void initCidades() {
-		listCidades = new ArrayList<>();
-		for (Municipios cidades : Municipios.values()) {
-			listCidades.add(new SelectItem(cidades, cidades.getLabel()));
-		}
-
-		listEstados = new ArrayList<>();
-		for (Estados e : Estados.values()) {
-			listCidades.add(new SelectItem(e, e.getLabel()));
-		}
-	}
-
-	public void carregarMunicipios() {
-		listMunicipios = new ArrayList<>();
-		for (Municipios cidades : Municipios.values()) {
-			if (selectEstado.name().equals(cidades.getEstado()))
-				listMunicipios.add(new SelectItem(cidades, cidades.getLabel()));
-		}
-	}
-
-	public void filtrarTabela() {
-		listEndereco = new ArrayList<>();
-		for (Endereco e : Enderecos.INSTANCE.allAdress()) {
-			if (e.getCep().contains(filtro)) {
-				listEndereco.add(e);
-			}
-		}
-	}
-	
-	public String carregarDetalhes(Endereco endereco) {
-		this.endereco = endereco;
-		return "detalhesEndereco";
-	}
-
-	public void carregarDetalhes2(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -156,5 +167,21 @@ public class EnderecoBean implements Serializable {
 
 	public void setListEndereco(List<Endereco> listEndereco) {
 		this.listEndereco = listEndereco;
+	}
+
+	public List<Integer> getListNumeros() {
+		return listNumeros;
+	}
+
+	public void setListNumeros(List<Integer> listNumeros) {
+		this.listNumeros = listNumeros;
+	}
+
+	public List<Integer> getListCeps() {
+		return listCeps;
+	}
+
+	public void setListCeps(List<Integer> listCeps) {
+		this.listCeps = listCeps;
 	}
 }

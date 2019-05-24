@@ -5,17 +5,17 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import br.com.unipe.enumerator.Cidades;
+import br.com.unipe.enumerator.TipoPessoa;
 
-@FacesConverter("cidadeConverter")
-public class CidadeConverter implements Converter {
+@FacesConverter("tipopessoaConverter")
+public class TipoPessoaConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		if (value != null && !value.equals("")) {
-			for (Cidades cidade : Cidades.values()) {
-				if (value.equals(cidade.getLabel())) {
-					return cidade;
+			for (TipoPessoa tipo : TipoPessoa.values()) {
+				if (value.equals(tipo.getLabel())) {
+					return tipo;
 				}
 			}
 		}
@@ -25,8 +25,8 @@ public class CidadeConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if (value != null && !value.equals("")) {
-			Cidades cidade = (Cidades) value;
-			return cidade.getLabel();
+			TipoPessoa tipo = (TipoPessoa) value;
+			return tipo.getLabel();
 		}
 		return "";
 	}

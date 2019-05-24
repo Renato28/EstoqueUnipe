@@ -6,11 +6,24 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition>
 	<h:form>
-		<p:menu>
-			<p:menuitem action="index" value="Home" ajax="false" />
-			<p:menuitem action="listarUsuarios" value="Listar Usuários" ajax="false" />
-			<p:menuitem action="listarEnderecos" value="Listar Enderecos" ajax="false"/>
-			<p:menuitem action="listarItens" value="Listar Itens" ajax="false"/>
+		<p:menu style="width:180px">
+			<p:submenu label="Menu">
+				<p:menuitem>
+					<h:outputLink value="index.jsf">
+						Home
+					</h:outputLink>
+				</p:menuitem>
+				<p:menuitem>
+					<h:outputLink value="cadastroUsuario.jsf">
+						Cadastro
+					</h:outputLink>
+				</p:menuitem>
+				<p:menuitem>
+					<h:outputLink value="listarUsuarios.jsf">
+						Listar
+					</h:outputLink>
+				</p:menuitem>
+			</p:submenu>
 		</p:menu>
 	</h:form>
 </ui:composition>
