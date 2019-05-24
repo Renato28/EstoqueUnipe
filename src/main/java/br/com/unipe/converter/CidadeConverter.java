@@ -5,7 +5,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import br.com.unipe.enumerator.Cidades;
+import br.com.unipe.enumerator.Municipios;
 
 @FacesConverter("cidadeConverter")
 public class CidadeConverter implements Converter {
@@ -13,7 +13,7 @@ public class CidadeConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		if (value != null && !value.equals("")) {
-			for (Cidades cidade : Cidades.values()) {
+			for (Municipios cidade : Municipios.values()) {
 				if (value.equals(cidade.getLabel())) {
 					return cidade;
 				}
@@ -25,7 +25,7 @@ public class CidadeConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if (value != null && !value.equals("")) {
-			Cidades cidade = (Cidades) value;
+			Municipios cidade = (Municipios) value;
 			return cidade.getLabel();
 		}
 		return "";

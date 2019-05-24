@@ -70,6 +70,15 @@ public class ItemBean implements Serializable {
 			}
 		}
 	}
+	
+	public String carregarDetalhes(Item item) {
+		this.item = item;
+		return "detalhesItem";
+	}
+
+	public void carregarDetalhes2(Item item) {
+		this.item = item;
+	}
 
 	public Item getItem() {
 		return item;

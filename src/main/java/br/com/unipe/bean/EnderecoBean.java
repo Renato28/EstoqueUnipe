@@ -9,7 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import br.com.unipe.entidade.Endereco;
-import br.com.unipe.enumerator.Cidades;
+import br.com.unipe.enumerator.Municipios;
 import br.com.unipe.enumerator.Enderecos;
 import br.com.unipe.enumerator.Estados;
 
@@ -102,7 +102,7 @@ public class EnderecoBean implements Serializable {
 
 	public void initCidades() {
 		listCidades = new ArrayList<>();
-		for (Cidades cidades : Cidades.values()) {
+		for (Municipios cidades : Municipios.values()) {
 			listCidades.add(new SelectItem(cidades, cidades.getLabel()));
 		}
 
@@ -114,7 +114,7 @@ public class EnderecoBean implements Serializable {
 
 	public void carregarMunicipios() {
 		listMunicipios = new ArrayList<>();
-		for (Cidades cidades : Cidades.values()) {
+		for (Municipios cidades : Municipios.values()) {
 			if (selectEstado.name().equals(cidades.getEstado()))
 				listMunicipios.add(new SelectItem(cidades, cidades.getLabel()));
 		}
@@ -127,6 +127,15 @@ public class EnderecoBean implements Serializable {
 				listEndereco.add(e);
 			}
 		}
+	}
+	
+	public String carregarDetalhes(Endereco endereco) {
+		this.endereco = endereco;
+		return "detalhesEndereco";
+	}
+
+	public void carregarDetalhes2(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public Endereco getEndereco() {

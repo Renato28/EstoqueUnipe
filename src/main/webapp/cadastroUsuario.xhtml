@@ -1,102 +1,79 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="/layout/template.xhtml"
 	xmlns:unipe="http://java.sun.com/jsf/composite/unipe">
 	<ui:define name="content">
 		<p:messages showDetail="true" showSummary="false" globalOnly="true" />
+		<p:panel header="Cadastro de UsuÃ¡rios">
+			<h:form>
+				<p:commandLink value="Listar UsuÃ¡rios" action="listarUsuarios" />
+			</h:form>
 
-		<p:panel title="Cadastro de Usuário">
 			<h:form id="form" prependId="false">
 				<p:panelGrid columns="1">
-					
-						<h:outputLabel value="Nome:" for="nome" />
-						<p:inputText id="nome" value="#{usuarioBean.usuario.nome}"
-							required="true">
-						</p:inputText>
-					
-					<p:message for="nome" />
-					
-						<p:outputLabel for="username" value="Username:" />
-						<p:inputText id="username" validator="usernameValidator"
-							value="#{usuarioBean.usuario.username}" required="true">
-						</p:inputText>
-					
-					<p:message for="username" />
-					
-						<p:outputLabel for="passwd" value="Password:" />
-						<p:password id="passwd" maxlength="8"
-							value="#{usuarioBean.usuario.password}">
-						</p:password>
-					
-					<p:message for="passwd" />
-				
-						<p:outputLabel for="cep" value="Cep:" />
-						<p:inputText id="cep" value="#{enderecoBean.endereco.cep}">
-						</p:inputText>
-					
-					<p:message for="cep" />
-					
-						<p:outputLabel for="email" value="Email:" />
-						<p:inputText id="email" validator="emailValidator"
-							value="#{usuarioBean.usuario.email}">
-						</p:inputText>
-					
+					<unipe:input id="nome" 
+					value="#{usuarioBean.usuario.nome}" 
+					label="Nome:" 
+					required="true"/>
+
+					<unipe:input id="uname" 
+					value="#{usuarioBean.usuario.nome}" 
+					label="Username:" 
+					required="false" 
+					validator2="#{usernameValidator}"/>
+
+					<p:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" value="#{usuarioBean.usuario.email}">
+					</p:inputText>
 					<p:message for="email" />
-					
-						<p:outputLabel value="Data de Nascimento:" for="dtNasc" />
-						<h:inputText id="dtNasc" value="#{usuarioBean.usuario.dtNasc}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:inputText>
-					
-					<p:message for="dtNasc" />
-					
-						<p:outputLabel value="Sexo:" for="sexo" />
-						<p:selectOneRadio id="sexo" value="#{usuarioBean.usuario.sexo}"
-							converter="sexoConverter">
-							<f:selectItems value="#{usuarioBean.listSexo}" />
-						</p:selectOneRadio>
-					
+
+					<p:outputLabel value="Cpf:" for="cpf" />
+					<p:inputText id="cpf" value="#{usuarioBean.usuario.cpf}"
+						validator="cpfValidator">
+					</p:inputText>
+					<p:message for="cpf" />
+
+					<p:outputLabel value="Password:" for="passwd" />
+					<p:password id="passwd" value="#{usuarioBean.usuario.password}">
+					</p:password>
+					<p:message for="passwd" />
+
+					<p:outputLabel value="Sexo:" for="sexo" />
+					<p:selectOneRadio id="sexo" value="#{usuarioBean.usuario.sexo}"
+						converter="sexoConverter">
+						<f:selectItems value="#{usuarioBean.listSexo}" />
+					</p:selectOneRadio>
 					<p:message for="sexo" />
-					
-						<h:outputLabel id="lbPessoa" value="Pessoa: " for="pessoa" />
-						<h:selectOneRadio id="pessoa"
-							value="#{usuarioBean.usuario.pessoa}" required="true"
-							requiredMessage="Campo [Pessoa] é obrigatório.">
-							<f:selectItem itemLabel="Jurídica" itemValue="Jurídica" />
-							<f:selectItem itemLabel="Física" itemValue="Física" />
-							<p:ajax event="change" update="pnlPessoa, pnlCpfOUCnpj"
-								process="@this" />
-						</h:selectOneRadio>
 
-						<p:outputPanel id="pnlPessoa" style="float: right;">
+					<p:outputLabel value="Data Nascimento:" for="dtNasc" />
+					<p:calendar id="dtNasc" value="#{usuarioBean.usuario.dtNasc}"
+						showOn="button" navigator="true" />
+					<p:message id="msgDtNasc" for="dtNasc" />
 
-							<h:outputLabel id="lbCpf" value="CPF:" for="cpf"
-								rendered="#{usuarioBean.usuario.pessoa=='Física'}" />
-							<h:outputLabel id="lbCnpj" value="CNPJ:" for="cnpj"
-								rendered="#{usuarioBean.usuario.pessoa=='Jurídica'}" />
+					<p:outputLabel value="Estado" for="estado" />
+					<p:selectOneMenu id="estado" value="#{enderecoBean.selectEstado}"
+						converter="estadoConverter">
+						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+						<f:selectItems value="#{enderecoBean.listEstados}" />
+						<p:ajax event="change" update="municipio"
+							listener="#{enderecoBean.carregarMunicipios}" />
+					</p:selectOneMenu>
+					<p:message for="estado" />
 
-						</p:outputPanel>
-
-						<p:outputPanel id="pnlCpfOUCnpj" style="float: left;">
-
-							<p:inputMask mask="999.999.999-99" id="cpf" size="25"
-								rendered="#{usuarioBean.usuario.pessoa=='Física'}"
-								value="#{usuarioBean.usuario.cpf}" style="float: right;" />
-
-							<p:inputMask mask="99.999.999/9999-99" id="cnpj" size="25"
-								rendered="#{usuarioBean.usuario.pessoa=='Jurídica'}"
-								value="#{usuarioBean.usuario.cnpj}" style="float: right;" />
-
-						</p:outputPanel>
-					
+					<p:outputLabel value="Municipio" for="municipio" />
+					<p:selectOneMenu id="municipio" value="#{enderecoBean.endereco.municipios}"
+						converter="cidadeConverter">
+						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+						<f:selectItems value="#{enderecoBean.listMunicipios}" />
+					</p:selectOneMenu>
+					<p:message for="municipio" />
 				</p:panelGrid>
 
-				<p:commandButton value="cadastrar"
+				<p:commandButton value="Cadastrar"
 					action="#{usuarioBean.adicionarUsuario}" ajax="false" />
 			</h:form>
 		</p:panel>

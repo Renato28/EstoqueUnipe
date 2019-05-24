@@ -106,6 +106,15 @@ public class UsuarioBean implements Serializable {
 		}
 	}
 	
+	public String carregarDetalhes(Usuario usuario) {
+		this.usuarios = usuario;
+		return "detalhesUsuario";
+	}
+
+	public void carregarDetalhes2(Usuario usuario) {
+		this.usuarios = usuario;
+	}
+	
 //	public Date getMaxdate() {
 //        Calendar now = Calendar.getInstance();
 //        now.add(Calendar.YEAR, +18);

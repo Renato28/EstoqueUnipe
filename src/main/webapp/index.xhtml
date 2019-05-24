@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
-
-<h:head>
-	<title>Home</title>
-</h:head>
-<h:body>
-	<p:panel header="Seja Bem-Vindo">
-		<br />
-		<h:form>
-			<p:menu>
-				<p:menuitem action="listarUsuarios" value="Listar Usu�rios"
-					ajax="false" />
-			</p:menu>
-		</h:form>
-	</p:panel>
-</h:body>
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="content">
+		<p:panel header="Seja Bem-Vindo #{usuario}">
+			<br />
+			<p:panelGrid columns="3" layout="grid">
+				<ui:repeat var="valor" value="#{enderecoBean.listLogradouros}">
+					<h:outputText value="#{valor}" />
+					<p:column>
+						<p:inputText value="#{valor}" />
+						<p:commandButton value="Ação" />
+					</p:column>
+					<br />
+				</ui:repeat>
+			</p:panelGrid>
+		</p:panel>
+	</ui:define>
+</ui:composition>
 </html>

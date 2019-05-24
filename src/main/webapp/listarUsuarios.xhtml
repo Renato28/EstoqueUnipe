@@ -4,8 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<ui:composition template="/layout/template.xhtml">
-	<ui:define name="content">
+
 		<p:panel header="Listar Usuários">
 			<h:form>
 				<p:commandButton value="Novo"
@@ -42,14 +41,9 @@
 					</p:column>
 
 					<p:column headerText="Data Nascimento">
-						<h:outputText value="#{usuario.dtNasc}">
+						<h:outputText value="#{usuario.dataNasc}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
-					</p:column>
-
-					<p:column headerText="Cidade de Nascimento">
-						<h:outputText value="#{usuario.cidadeNasc}"
-							converter="cidadeConverter" />
 					</p:column>
 
 					<p:column headerText="Ações">
@@ -82,6 +76,5 @@
 				</p:dialog>
 			</h:form>
 		</p:panel>
-	</ui:define>
-</ui:composition>
 </html>
+

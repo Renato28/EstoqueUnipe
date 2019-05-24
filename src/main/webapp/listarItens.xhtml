@@ -1,11 +1,70 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+		<p:panel header="Listar Itens">
+			<h:form>
+				<p:commandButton value="Novo"
+					action="#{itemBean.prepararCadastro}" ajax="false">
+				</p:commandButton>
+				<p:commandButton value="Mesma Pagina"
+					action="#{itemBean.prepararList}">
+				</p:commandButton>
+			</h:form>
 
-</body>
+			<h:form prependId="false">
+				<p:inputText value="#{itemBean.filtro}">
+					<p:ajax event="blur" listener="#{itemBean.filtrarTabela}"
+						update="tableItens" />
+				</p:inputText>
+				<p:dataTable id="tableItens" widgetVar="table"
+					value="#{itemBean.listItem}" var="item" paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" reflow="true" scrollable="true">
+					<f:facet name="header">
+						<h:outputText value="Itens" />
+					</f:facet>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{item.nome}" />
+					</p:column>
+
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{item.quantidade}" />
+					</p:column>
+
+<!-- 					<p:column headerText="Tipo"> -->
+<!-- 						<p:outputLabel value="Itens:" for="itens" /> -->
+<!-- 						<p:selectOneListbox id="itens" value="#{itemBean.item.option}"> -->
+<!-- 						</p:selectOneListbox> -->
+<!-- 					</p:column> -->
+
+					<p:column headerText="Ações">
+						<p:commandButton value="Detalhes" icon="fa fa-search"
+							action="#{itemBean.carregarDetalhes2(item)}"
+							update=":formDialog:dialogDetalhes"
+							oncomplete="PF('dialogDetail').show()" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+
+			<h:form id="formDialog">
+				<p:dialog id="dialogDetalhes" widgetVar="dialogDetail" modal="true">
+					<p:panelGrid id="panelDetail" columns="2">
+						<p:outputLabel value="Nome:" />
+						<h:outputText value="#{itemBean.item.nome}" />
+
+						<p:outputLabel value="Quantidade:" />
+						<h:outputText value="#{itemBean.item.quantidade}" />
+
+<!-- 						<p:outputLabel value="Tipo:" /> -->
+<!-- 						<h:outputText value="#{itemBean.item.option}"/> -->
+				
+					</p:panelGrid>
+				</p:dialog>
+			</h:form>
+		</p:panel>
 </html>
+

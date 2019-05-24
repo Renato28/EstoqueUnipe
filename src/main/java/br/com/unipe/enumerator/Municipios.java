@@ -1,6 +1,6 @@
 package br.com.unipe.enumerator;
 
-public enum Cidades {
+public enum Municipios {
 
 	JP("Jo�o Pessoa", "PB"), CG("Campina Grande", "PB"),
 	RE("Recife", "PE"), OL("Olinda", "PE"),
@@ -16,7 +16,7 @@ public enum Cidades {
 	private String label;
 	private String estado;
 
-	private Cidades(String label, String estado) {
+	private Municipios(String label, String estado) {
 
 		this.label = label;
 		this.estado = estado;

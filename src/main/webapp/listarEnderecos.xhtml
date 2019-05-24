@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+		<p:panel header="Listar Enderecos">
+			<h:form>
+				<p:commandButton value="Novo"
+					action="#{enderecoBean.prepararCadastro}" ajax="false">
+				</p:commandButton>
+				<p:commandButton value="Mesma Pagina"
+					action="#{enderecoBean.prepararList}">
+				</p:commandButton>
+			</h:form>
+
+			<h:form prependId="false">
+				<p:inputText value="#{enderecoBean.filtro}">
+					<p:ajax event="blur" listener="#{enderecoBean.filtrarTabela}"
+						update="tableEnderecos" />
+				</p:inputText>
+				<p:dataTable id="tableEnderecos" widgetVar="table"
+					value="#{enderecoBean.listEndereco}" var="endereco" paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" reflow="true" scrollable="true">
+					<f:facet name="header">
+						<h:outputText value="Enderecos" />
+					</f:facet>
+
+					<p:column headerText="Cep">
+						<h:outputText value="#{endereco.logradouro}" />
+					</p:column>
+
+					<p:column headerText="Logradouro">
+						<h:outputText value="#{endereco.municipio}" />
+					</p:column>
+
+					<p:column headerText="Estado">
+						<h:outputText value="#{endereco.estado}" />
+					</p:column>
+					
+					<p:column headerText="Numero">
+						<h:outputText value="#{endereco.numero}" />
+					</p:column>
+					
+					<p:column headerText="Cep">
+						<h:outputText value="#{endereco.cep}" />
+					</p:column>
+
+					
+
+					<p:column headerText="Ações">
+						<p:commandButton value="Detalhes" icon="fa fa-search"
+							action="#{usuarioBean.carregarDetalhes2(endereco)}"
+							update=":formDialog:dialogDetalhes"
+							oncomplete="PF('dialogDetail').show()" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+
+			<h:form id="formDialog">
+				<p:dialog id="dialogDetalhes" widgetVar="dialogDetail" modal="true">
+					<p:panelGrid id="panelDetail" columns="2">
+						<p:outputLabel value="Logradouro:" />
+						<h:outputText value="#{enderecoBean.endereco.logradouros}" />
+
+						<p:outputLabel value="Municipio:" />
+						<h:outputText value="#{enderecoBean.endereco.municipios}" />
+
+						<p:outputLabel value="Estado:" />
+						<h:outputText value="#{enderecoBean.endereco.estados}"
+							converter="estadoConverter" />
+
+						<p:outputLabel value="Numero:" />
+						<h:outputText value="#{enderecoBean.endereco.numero}">
+						</h:outputText>
+						
+						<p:outputLabel value="Cep:" />
+						<h:outputText value="#{enderecoBean.endereco.cep}">
+						</h:outputText>
+					</p:panelGrid>
+				</p:dialog>
+			</h:form>
+		</p:panel>
+</html>
+

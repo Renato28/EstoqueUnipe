@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import br.com.unipe.enumerator.Cidades;
+import br.com.unipe.enumerator.Municipios;
 import br.com.unipe.enumerator.Estados;
 import br.com.unipe.enumerator.Logradouro;
 
@@ -19,7 +19,7 @@ public class Endereco implements Serializable{
 	private Logradouro logradouros;
 	
 	@NotEmpty
-	private Cidades municipios;
+	private Municipios municipios;
 	
 	@NotEmpty
 	private Estados estados;
@@ -38,11 +38,11 @@ public class Endereco implements Serializable{
 		this.logradouros = logradouros;
 	}
 
-	public Cidades getMunicipios() {
+	public Municipios getMunicipios() {
 		return municipios;
 	}
 
-	public void setMunicipios(Cidades municipios) {
+	public void setMunicipios(Municipios municipios) {
 		this.municipios = municipios;
 	}
 

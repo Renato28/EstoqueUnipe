@@ -6,41 +6,26 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/layout/template.xhtml"
-	xmlns:unipe="http://java.sun.com/jsf/composite/unipe">
-	<style type="text/css">
-.label, .value {
-	vertical-align: top
-}
-
-.output {
-	font-weight: bold
-}
-</style>
-	<ui:define name="content">
-		<p:messages showDetail="true" showSummary="false" globalOnly="true" />
-		<p:panel title="Cadastro de Item">
-			<h:form id="form" prependId="false">
-				<p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
-					columnClasses="label, value">
-					<h:outputLabel value="Nome:" for="nome" />
-					<p:inputText id="nome" value="#{itemBean.item.nome}"
-						required="true">
-					</p:inputText>
-					<h:outputLabel value="Quantidade:" for="quantidade" />
-					<p:inputText id="quantidade" value="#{itemBean.item.quantidade}"
-						required="true">
-					</p:inputText>
-					<p:outputLabel value="Itens:" for="itens" />
-					<p:selectOneListbox id="itens" value="#{itemBean.item.option}">
-						<f:selectItem itemLabel="Alimento" itemValue="1" />
-						<f:selectItem itemLabel="Eletrodomestico" itemValue="2" />
-						<f:selectItem itemLabel="Eletroportateis" itemValue="3" />
-						<f:selectItem itemLabel="Informatica" itemValue="4" />
-					</p:selectOneListbox>
-				</p:panelGrid>
-			</h:form>
-		</p:panel>
-	</ui:define>
-</ui:composition>
+<p:messages showDetail="true" showSummary="false" globalOnly="true" />
+<p:panel title="Cadastro de Item">
+	<h:form id="form" prependId="false">
+		<p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
+			columnClasses="label, value">
+			<h:outputLabel value="Nome:" for="nome" />
+			<p:inputText id="nome" value="#{itemBean.item.nome}" required="true">
+			</p:inputText>
+			<h:outputLabel value="Quantidade:" for="quantidade" />
+			<p:inputText id="quantidade" value="#{itemBean.item.quantidade}"
+				required="true">
+			</p:inputText>
+			<p:outputLabel value="Itens:" for="itens" />
+			<p:selectOneListbox id="itens" value="#{itemBean.item.option}">
+				<f:selectItem itemLabel="Alimento" itemValue="1" />
+				<f:selectItem itemLabel="Eletrodomestico" itemValue="2" />
+				<f:selectItem itemLabel="Eletroportateis" itemValue="3" />
+				<f:selectItem itemLabel="Informatica" itemValue="4" />
+			</p:selectOneListbox>
+		</p:panelGrid>
+	</h:form>
+</p:panel>
 </html>
