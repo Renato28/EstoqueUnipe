@@ -15,7 +15,6 @@
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.jsf</url-pattern>
-		<url-pattern>/javax.faces.resource/*</url-pattern>
 	</servlet-mapping>
 	<mime-mapping>
    		<extension>jsp</extension>
