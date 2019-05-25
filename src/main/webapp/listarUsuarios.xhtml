@@ -4,7 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-
+<ui:composition template="/layout/template.xhtml"
+	xmlns:unipe="http://java.sun.com/jsf/composite/unipe">
+	<ui:define name="content">
 		<p:panel header="Listar Usuários">
 			<h:form>
 				<p:commandButton value="Novo"
@@ -76,5 +78,7 @@
 				</p:dialog>
 			</h:form>
 		</p:panel>
+	</ui:define>
+</ui:composition>
 </html>
 
