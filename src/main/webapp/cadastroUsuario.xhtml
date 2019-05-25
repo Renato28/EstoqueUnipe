@@ -15,12 +15,14 @@
 
 			<h:form id="form" prependId="false">
 				<p:panelGrid columns="1">
-					<unipe:input id="nome" value="#{usuarioBean.usuario.nome}"
-						label="Nome:" required="true" />
 
-					<unipe:input id="uname" value="#{usuarioBean.usuario.nome}"
-						label="Username:" required="false"
-						validator2="#{usernameValidator}" />
+					<p:outputLabel value="Nome:" for="nome" />
+					<p:inputText id="nome" value="#{usuarioBean.usuario.nome}"
+						required="true" />
+
+					<p:outputLabel value="Username:" for="username" />
+					<p:inputText id="username" value="#{usuarioBean.usuario.username}"
+						required="true" validator="usernameValidator" />
 
 					<p:outputLabel value="Email:" for="email" />
 					<p:inputText id="email" value="#{usuarioBean.usuario.email}">
@@ -50,7 +52,7 @@
 						required="true" requiredMessage="Campo [Pessoa] é obrigatório.">
 						<f:selectItem itemLabel="Jurídica" itemValue="Jurídica" />
 						<f:selectItem itemLabel="Física" itemValue="Física" />
-						<p:ajax event="change" update="pnlPessoa pnlCpfOUCnpj" />
+						<p:ajax event="change" update="pnlPessoa, pnlCpfOUCnpj" />
 					</p:selectOneRadio>
 
 					<p:outputPanel id="pnlPessoa" style="float: right;">
@@ -75,10 +77,24 @@
 							converter="tipopessoaConverter" />
 
 					</p:outputPanel>
+					
+<!-- 					<p:column> -->
+<!--                                 <f:facet name="header"> -->
+<!--                                     <h:outputText value="CPF" /> -->
+<!--                                 </f:facet> -->
+<!--                                 <h:outputText value="#{usuarioBean.usuario.cpf}" /> -->
+<!--                             </p:column> -->
+
+<!--                             <p:column> -->
+<!--                                 <f:facet name="header"> -->
+<!--                                     <h:outputText value="CNPJ" /> -->
+<!--                                 </f:facet> -->
+<!--                                 <h:outputText value="#{usuarioBean.usuario.cnpj}" /> -->
+<!--                     </p:column> -->
 
 					<p:outputLabel value="Data Nascimento:" for="dtNasc" />
 					<p:calendar id="dtNasc" value="#{usuarioBean.usuario.dtNasc}"
-						showOn="button" navigator="true"
+						 required="true" showOn="button" navigator="true"
 						validator="datanascimentoValidator" />
 					<p:message id="DtNasc" for="dtNasc" />
 
