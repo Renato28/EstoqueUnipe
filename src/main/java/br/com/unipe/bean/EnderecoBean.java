@@ -26,6 +26,7 @@ public class EnderecoBean implements Serializable {
 	private List<String> listLogradouros;
 	private List<SelectItem> listMunicipios;
 	private List<SelectItem> listEstados;
+	private List<String> listBairros;
 	private List<Integer> listNumeros;
 	private List<Integer> listCeps;
 
@@ -42,6 +43,7 @@ public class EnderecoBean implements Serializable {
 		listLogradouros = new ArrayList<>();
 		listMunicipios = new ArrayList<>();
 		listEstados = new ArrayList<>();
+		listBairros = new ArrayList<>();
 		listNumeros = new ArrayList<>();
 		listCeps = new ArrayList<>();
 		listEndereco = new ArrayList<>();
@@ -121,6 +123,14 @@ public class EnderecoBean implements Serializable {
 
 	public void setListEstados(List<SelectItem> listEstados) {
 		this.listEstados = listEstados;
+	}
+
+	public List<String> getListBairros() {
+		return listBairros;
+	}
+
+	public void setListBairros(List<String> listBairros) {
+		this.listBairros = listBairros;
 	}
 
 	public List<SelectItem> getListMunicipios() {

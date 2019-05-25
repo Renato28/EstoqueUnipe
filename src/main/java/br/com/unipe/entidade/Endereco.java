@@ -23,6 +23,9 @@ public class Endereco implements Serializable{
 	private Estados estados;
 	
 	@NotEmpty
+	private String bairro;
+
+	@NotEmpty
 	private Integer numero;
 	
 	@NotEmpty
@@ -43,6 +46,14 @@ public class Endereco implements Serializable{
 
 	public void setEstados(Estados estados) {
 		this.estados = estados;
+	}
+	
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
 	public Integer getNumero() {

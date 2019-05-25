@@ -55,6 +55,7 @@ public class UsuarioBean implements Serializable {
 	public UsuarioBean() {
 
 		usuarios = new Usuario();
+		listMunicipios = new ArrayList<>();
 		listUsuarios = new ArrayList<>();
 		listUsuarios = Usuarios.INSTANCE.allUsers();
 	}
