@@ -4,10 +4,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/layout/template.xhtml"
+	xmlns:unipe="http://java.sun.com/jsf/composite/unipe">
+	<ui:define name="content">
 		<p:panel header="Listar Itens">
 			<h:form>
-				<p:commandButton value="Novo"
-					action="#{itemBean.prepararCadastro}" ajax="false">
+				<p:commandButton value="Novo" action="#{itemBean.prepararCadastro}"
+					ajax="false">
 				</p:commandButton>
 				<p:commandButton value="Mesma Pagina"
 					action="#{itemBean.prepararList}">
@@ -35,11 +38,11 @@
 						<h:outputText value="#{item.quantidade}" />
 					</p:column>
 
-<!-- 					<p:column headerText="Tipo"> -->
-<!-- 						<p:outputLabel value="Itens:" for="itens" /> -->
-<!-- 						<p:selectOneListbox id="itens" value="#{itemBean.item.option}"> -->
-<!-- 						</p:selectOneListbox> -->
-<!-- 					</p:column> -->
+					<!-- 					<p:column headerText="Tipo"> -->
+					<!-- 						<p:outputLabel value="Itens:" for="itens" /> -->
+					<!-- 						<p:selectOneListbox id="itens" value="#{itemBean.item.option}"> -->
+					<!-- 						</p:selectOneListbox> -->
+					<!-- 					</p:column> -->
 
 					<p:column headerText="Ações">
 						<p:commandButton value="Detalhes" icon="fa fa-search"
@@ -59,12 +62,14 @@
 						<p:outputLabel value="Quantidade:" />
 						<h:outputText value="#{itemBean.item.quantidade}" />
 
-<!-- 						<p:outputLabel value="Tipo:" /> -->
-<!-- 						<h:outputText value="#{itemBean.item.option}"/> -->
-				
+						<!-- 						<p:outputLabel value="Tipo:" /> -->
+						<!-- 						<h:outputText value="#{itemBean.item.option}"/> -->
+
 					</p:panelGrid>
 				</p:dialog>
 			</h:form>
 		</p:panel>
+	</ui:define>
+</ui:composition>
 </html>
 
