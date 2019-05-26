@@ -123,4 +123,12 @@ public class ItemBean implements Serializable {
 		this.listItens = listItem;
 	}
 
+	public List<Item> getListItens() {
+		return listItens;
+	}
+
+	public void setListItens(List<Item> listItens) {
+		this.listItens = listItens;
+	}
+
 }
