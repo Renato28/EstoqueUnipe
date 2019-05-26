@@ -16,11 +16,31 @@ public enum Itens {
 		listItens = new ArrayList<>();
 	}
 
-	public void addItem(Item item) {
-		listItens.add(item);
+	public boolean addItem(Item item) {
+		if (item != null && !listItens.contains(item)) {
+			return listItens.add(item);
+		} else {
+			return false;
+		}
 	}
-	
-	public List<Item> allItens(){
+
+	public List<Item> allItens() {
 		return listItens;
 	}
+
+	public boolean updateItem(Item item, Item novoItem) {
+		for (int i = 0; i < listItens.size(); i++)
+			if (item.equals(listItens.get(i)))
+				listItens.set(i, novoItem);
+		return true;
+	}
+
+	public boolean removeItem(Item item) {
+		if (item != null && listItens.contains(item)) {
+			return listItens.remove(item);
+		} else {
+			return false;
+		}
+	}
+
 }

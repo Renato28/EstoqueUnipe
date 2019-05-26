@@ -29,7 +29,7 @@ public class UsuarioBean implements Serializable {
 
 	private Usuario usuarios;
 	private Endereco endereco;
-	
+
 	private List<String> listNomes;
 	private List<String> listUsernames;
 	private List<String> listPasswords;
@@ -123,7 +123,7 @@ public class UsuarioBean implements Serializable {
 	public void setListSexos(List<SelectItem> listSexos) {
 		this.listSexos = listSexos;
 	}
-	
+
 	public List<String> getListNomes() {
 		return listNomes;
 	}
@@ -221,14 +221,14 @@ public class UsuarioBean implements Serializable {
 			listEstados.add(new SelectItem(estados, estados.getLabel()));
 		}
 	}
-	
+
 	public void carregarMunicipios() {
 		listMunicipios = new ArrayList<>();
 		for (Cidades cidades : Cidades.values()) {
 			if (selectEstado.name().equals(cidades.getEstado()))
 				listMunicipios.add(new SelectItem(cidades, cidades.getLabel()));
 		}
-		
+
 	}
 
 	public String prepararCadastro() {
@@ -246,8 +246,21 @@ public class UsuarioBean implements Serializable {
 		return "listarUsuarios";
 	}
 
-	public List<Usuario> getListUsuario() {
+	public List<Usuario> listarUsuarios() {
+		Usuarios.INSTANCE.allUsers();
 		return listUsuarios;
+	}
+
+	public String atualizarUsuario(Usuario novoUsuario) {
+		Usuarios.INSTANCE.updateUsers(usuarios, novoUsuario);
+		listUsuarios = Usuarios.INSTANCE.allUsers();
+		return "listarUsuarios";
+	}
+
+	public String removerUsuario() {
+		Usuarios.INSTANCE.removeUser(usuarios);
+		listUsuarios = Usuarios.INSTANCE.allUsers();
+		return "listarUsuarios";
 	}
 
 	public void filtrarTabela() {

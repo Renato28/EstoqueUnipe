@@ -141,6 +141,10 @@ public class EnderecoBean implements Serializable {
 		this.listMunicipios = listMunicipios;
 	}
 
+	public List<Endereco> getListEndereco() {
+		return listEndereco;
+	}
+
 	public String prepararCadastro() {
 		endereco = new Endereco();
 		return "cadastroEndereco";
@@ -155,8 +159,21 @@ public class EnderecoBean implements Serializable {
 		return "listarEnderecos";
 	}
 
-	public List<Endereco> getListEndereco() {
+	public List<Endereco> listarEnderecos() {
+		Enderecos.INSTANCE.allAdress();
 		return listEndereco;
+	}
+
+	public String atualizarEndereco(Endereco novoEndereco) {
+		Enderecos.INSTANCE.updateAdress(endereco, novoEndereco);
+		listEndereco = Enderecos.INSTANCE.allAdress();
+		return "listarEnderecos";
+	}
+
+	public String removerEndereco() {
+		Enderecos.INSTANCE.removeAdress(endereco);
+		listEndereco = Enderecos.INSTANCE.allAdress();
+		return "listarEnderecos";
 	}
 
 	public Endereco getEndereco() {

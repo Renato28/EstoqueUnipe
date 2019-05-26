@@ -23,7 +23,7 @@ public class ItemBean implements Serializable {
 	private TipoItem tipoItem;
 
 	private Item selectItem;
-	private List<Item> listItem;
+	private List<Item> listItens;
 
 	private String filtro;
 
@@ -45,8 +45,8 @@ public class ItemBean implements Serializable {
 
 	public ItemBean() {
 		item = new Item();
-		listItem = new ArrayList<>();
-		listItem = Itens.INSTANCE.allItens();
+		listItens = new ArrayList<>();
+		listItens = Itens.INSTANCE.allItens();
 	}
 
 	public String prepararCadastro() {
@@ -58,19 +58,42 @@ public class ItemBean implements Serializable {
 		return "";
 	}
 
-	public List<Item> getListItem() {
-		return listItem;
+	public boolean addItem(Item item) {
+		if (item != null && !listItens.contains(item)) {
+			return listItens.add(item);
+		} else {
+			return false;
+		}
+	}
+
+	public List<Item> allItens() {
+		return listItens;
+	}
+
+	public boolean updateItem(Item item, Item novoItem) {
+		for (int i = 0; i < listItens.size(); i++)
+			if (item.equals(listItens.get(i)))
+				listItens.set(i, novoItem);
+		return true;
+	}
+
+	public boolean removeItem(Item item) {
+		if (item != null && listItens.contains(item)) {
+			return listItens.remove(item);
+		} else {
+			return false;
+		}
 	}
 
 	public void filtrarTabela() {
-		listItem = new ArrayList<>();
+		listItens = new ArrayList<>();
 		for (Item i : Itens.INSTANCE.allItens()) {
 			if (i.getItem().contains(filtro)) {
-				listItem.add(i);
+				listItens.add(i);
 			}
 		}
 	}
-	
+
 	public String carregarDetalhes(Item item) {
 		this.item = item;
 		return "detalhesItem";
@@ -97,7 +120,7 @@ public class ItemBean implements Serializable {
 	}
 
 	public void setListItem(List<Item> listItem) {
-		this.listItem = listItem;
+		this.listItens = listItem;
 	}
 
 }

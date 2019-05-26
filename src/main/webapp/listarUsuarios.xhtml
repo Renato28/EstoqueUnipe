@@ -23,7 +23,7 @@
 						update="tableUsuarios" />
 				</p:inputText>
 				<p:dataTable id="tableUsuarios" widgetVar="table"
-					value="#{usuarioBean.listUsuario}" var="usuario" paginator="true"
+					value="#{usuarioBean.listUsuarios}" var="usuario" paginator="true"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15" reflow="true" scrollable="true">
 					<f:facet name="header">
@@ -55,6 +55,10 @@
 							oncomplete="PF('dialogDetail').show()" />
 					</p:column>
 				</p:dataTable>
+				<p:commandButton value="Atualizar"
+					action="#{usuarioBean.atualizarUsuario}" ajax="false" />
+				<p:commandButton value="Excluir"
+					action="#{usuarioBean.removerUsuario}" ajax="false" />
 			</h:form>
 
 			<h:form id="formDialog">

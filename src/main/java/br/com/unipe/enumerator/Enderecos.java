@@ -16,12 +16,31 @@ public enum Enderecos {
 		listEnderecos = new ArrayList<>();
 	}
 
-	public void addAdress(Endereco endereco) {
-		listEnderecos.add(endereco);
+	public boolean addAdress(Endereco endereco) {
+		if (endereco != null && !listEnderecos.contains(endereco)) {
+			return listEnderecos.add(endereco);
+		} else {
+			return false;
+		}
 	}
-	
-	public List<Endereco> allAdress(){
+
+	public List<Endereco> allAdress() {
 		return listEnderecos;
 	}
-	
+
+	public boolean updateAdress(Endereco endereco, Endereco novoEndereco) {
+		for (int i = 0; i < listEnderecos.size(); i++)
+			if (endereco.equals(listEnderecos.get(i)))
+				listEnderecos.set(i, novoEndereco);
+		return true;
+	}
+
+	public boolean removeAdress(Endereco endereco) {
+		if (endereco != null && listEnderecos.contains(endereco)) {
+			return listEnderecos.remove(endereco);
+		} else {
+			return false;
+		}
+	}
+
 }
