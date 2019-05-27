@@ -55,6 +55,8 @@ public class UsuarioBean implements Serializable {
 	public UsuarioBean() {
 
 		usuarios = new Usuario();
+		endereco = new Endereco();
+		usuarios.setEndereco(endereco);
 		listMunicipios = new ArrayList<>();
 		listUsuarios = new ArrayList<>();
 		listUsuarios = Usuarios.INSTANCE.allUsers();
@@ -212,21 +214,21 @@ public class UsuarioBean implements Serializable {
 		}
 
 		listCidades = new ArrayList<>();
-		for (Cidades cidades : Cidades.values()) {
-			listCidades.add(new SelectItem(cidades, cidades.getLabel()));
+		for (Cidades cidade : Cidades.values()) {
+			listCidades.add(new SelectItem(cidade, cidade.getLabel()));
 		}
 
 		listEstados = new ArrayList<>();
-		for (Estados estados : Estados.values()) {
-			listEstados.add(new SelectItem(estados, estados.getLabel()));
+		for (Estados estado : Estados.values()) {
+			listEstados.add(new SelectItem(estado, estado.getLabel()));
 		}
 	}
 
 	public void carregarMunicipios() {
 		listMunicipios = new ArrayList<>();
-		for (Cidades cidades : Cidades.values()) {
-			if (selectEstado.name().equals(cidades.getEstado()))
-				listMunicipios.add(new SelectItem(cidades, cidades.getLabel()));
+		for (Cidades cidade : Cidades.values()) {
+			if (selectEstado.name().equals(cidade.getEstado()))
+				listMunicipios.add(new SelectItem(cidade, cidade.getLabel()));
 		}
 
 	}
@@ -251,10 +253,10 @@ public class UsuarioBean implements Serializable {
 		return listUsuarios;
 	}
 
-	public String atualizarUsuario(Usuario novoUsuario) {
+	public List<Usuario> atualizarUsuario(Usuario novoUsuario) {
 		Usuarios.INSTANCE.updateUsers(usuarios, novoUsuario);
 		listUsuarios = Usuarios.INSTANCE.allUsers();
-		return "listarUsuarios";
+		return listUsuarios;
 	}
 
 	public String removerUsuario() {
@@ -303,10 +305,6 @@ public class UsuarioBean implements Serializable {
 
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
-	}
-
-	public void setListUsuario(List<Usuario> listusuarios) {
-		this.listUsuarios = listusuarios;
 	}
 
 }

@@ -39,50 +39,50 @@
 					</p:selectOneRadio>
 					<p:message for="sexo" />
 
-					<h:outputLabel id="lbPessoa" value="Pessoa: " for="pessoa" />
-					<p:selectOneRadio id="pessoa" value="#{usuarioBean.usuario.pessoa}"
-						required="true" requiredMessage="Campo [Pessoa] é obrigatório.">
-						<f:selectItem itemLabel="Jurídica" itemValue="Jurídica" />
-						<f:selectItem itemLabel="Física" itemValue="Física" />
-						<p:ajax event="change" update="pnlPessoa, pnlCpfOUCnpj" />
-					</p:selectOneRadio>
+<!-- 					<h:outputLabel id="lbPessoa" value="Pessoa: " for="pessoa" /> -->
+<!-- 					<p:selectOneRadio id="pessoa" value="#{usuarioBean.usuario.pessoa}" -->
+<!-- 						required="true" requiredMessage="Campo [Pessoa] é obrigatório."> -->
+<!-- 						<f:selectItem itemLabel="Jurídica" itemValue="Jurídica" /> -->
+<!-- 						<f:selectItem itemLabel="Física" itemValue="Física" /> -->
+<!-- 						<p:ajax event="change" update="pnlPessoa pnlCpfOUCnpj" /> -->
+<!-- 					</p:selectOneRadio> -->
 
-					<p:outputPanel id="pnlPessoa" style="float: right;">
+<!-- 					<p:outputPanel id="pnlPessoa" style="float: right;"> -->
 
-						<h:outputLabel id="lbCpf" value="CPF:" for="cpf"
-							rendered="#{usuarioBean.usuario.pessoa=='PF'}" />
-						<h:outputLabel id="lbCnpj" value="CNPJ:" for="cnpj"
-							rendered="#{usuarioBean.usuario.pessoa=='PJ'}" />
+<!-- 						<h:outputLabel id="lbCpf" value="CPF:" for="cpf" -->
+<!-- 							rendered="#{usuarioBean.usuario.pessoa=='PF'}" /> -->
+<!-- 						<h:outputLabel id="lbCnpj" value="CNPJ:" for="cnpj" -->
+<!-- 							rendered="#{usuarioBean.usuario.pessoa=='PJ'}" /> -->
 
-					</p:outputPanel>
+<!-- 					</p:outputPanel> -->
 
-					<p:outputPanel id="pnlCpfOUCnpj" style="float: left;">
+<!-- 					<p:outputPanel id="pnlCpfOUCnpj" style="float: left;"> -->
 
-						<p:inputMask mask="999.999.999-99" id="cpf" size="25"
-							rendered="#{usuarioBean.usuario.pessoa=='PF'}"
-							value="#{usuarioBean.usuario.cpf}" style="float: right;"
-							converter="tipopessoaConverter" />
+<!-- 						<p:inputMask mask="999.999.999-99" id="cpf" size="25" -->
+<!-- 							rendered="#{usuarioBean.usuario.pessoa=='PF'}" -->
+<!-- 							value="#{usuarioBean.usuario.cpf}" style="float: right;" -->
+<!-- 							converter="tipopessoaConverter" /> -->
 
-						<p:inputMask mask="99.999.999/9999-99" id="cnpj" size="25"
-							rendered="#{usuarioBean.usuario.pessoa=='PJ'}"
-							value="#{usuarioBean.usuario.cnpj}" style="float: right;"
-							converter="tipopessoaConverter" />
+<!-- 						<p:inputMask mask="99.999.999/9999-99" id="cnpj" size="25" -->
+<!-- 							rendered="#{usuarioBean.usuario.pessoa=='PJ'}" -->
+<!-- 							value="#{usuarioBean.usuario.cnpj}" style="float: right;" -->
+<!-- 							converter="tipopessoaConverter" /> -->
 
-					</p:outputPanel>
+<!-- 					</p:outputPanel> -->
 
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="CPF" />
-						</f:facet>
-						<h:outputText value="#{usuarioBean.usuario.cpf}" />
-					</p:column>
+<!-- 					<p:column> -->
+<!-- 						<f:facet name="header"> -->
+<!-- 							<h:outputText value="CPF" /> -->
+<!-- 						</f:facet> -->
+<!-- 						<h:outputText value="#{usuarioBean.usuario.cpf}" /> -->
+<!-- 					</p:column> -->
 
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="CNPJ" />
-						</f:facet>
-						<h:outputText value="#{usuarioBean.usuario.cnpj}" />
-					</p:column>
+<!-- 					<p:column> -->
+<!-- 						<f:facet name="header"> -->
+<!-- 							<h:outputText value="CNPJ" /> -->
+<!-- 						</f:facet> -->
+<!-- 						<h:outputText value="#{usuarioBean.usuario.cnpj}" /> -->
+<!-- 					</p:column> -->
 
 					<p:outputLabel value="Data Nascimento:" for="dtNasc" />
 					<p:calendar id="dtNasc" value="#{usuarioBean.usuario.dtNasc}"
@@ -108,7 +108,7 @@
 
 					<p:outputLabel value="Municipio" for="municipio" />
 					<p:selectOneMenu id="municipio"
-						value="#{usuarioBean.endereco.municipios}"
+						value="#{UsuarioBean.endereco.municipio}"
 						converter="cidadeConverter">
 						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
 						<f:selectItems value="#{usuarioBean.listMunicipios}" />

@@ -32,26 +32,20 @@
 					</f:facet>
 
 					<p:column headerText="Cep">
-						<h:outputText value="#{endereco.logradouro}" />
+						<h:outputText value="#{usuarioBean.endereco.cep}" />
 					</p:column>
 
 					<p:column headerText="Logradouro">
-						<h:outputText value="#{endereco.municipio}" />
+						<h:outputText value="#{usuarioBean.endereco.logradouros}" />
 					</p:column>
 
 					<p:column headerText="Estado">
-						<h:outputText value="#{endereco.estado}" />
+						<h:outputText value="#{usuarioBean.endereco.estados}" />
 					</p:column>
 
 					<p:column headerText="Numero">
-						<h:outputText value="#{endereco.numero}" />
+						<h:outputText value="#{usuarioBean.endereco.numero}" />
 					</p:column>
-
-					<p:column headerText="Cep">
-						<h:outputText value="#{endereco.cep}" />
-					</p:column>
-
-
 
 					<p:column headerText="Ações">
 						<p:commandButton value="Detalhes" icon="fa fa-search"

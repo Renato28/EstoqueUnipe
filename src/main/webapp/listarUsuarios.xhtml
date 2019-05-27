@@ -31,19 +31,19 @@
 					</f:facet>
 
 					<p:column headerText="Nome">
-						<h:outputText value="#{usuario.nome}" />
+						<h:outputText value="#{usuarioBean.usuario.nome}" />
 					</p:column>
 
 					<p:column headerText="Username">
-						<h:outputText value="#{usuario.username}" />
+						<h:outputText value="#{usuarioBean.usuario.username}" />
 					</p:column>
 
 					<p:column headerText="Sexo">
-						<h:outputText value="#{usuario.sexo}" />
+						<h:outputText value="#{usuarioBean.usuario.sexo}" />
 					</p:column>
 
 					<p:column headerText="Data Nascimento">
-						<h:outputText value="#{usuario.dataNasc}">
+						<h:outputText value="#{usuarioBean.usuario.dtNasc}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</p:column>

@@ -56,31 +56,27 @@ public class ItemBean implements Serializable {
 		return "";
 	}
 
-	public boolean adicionarItem(Item item) {
-		if (item != null && !listItens.contains(item)) {
-			return listItens.add(item);
-		} else {
-			return false;
-		}
+	public String adicionarItem() {
+		Itens.INSTANCE.addItem(item);
+		listItens = Itens.INSTANCE.allItens();
+		return "listarItens";
 	}
 
-	public List<Item> allItens() {
+	public List<Item> listarItens() {
+		Itens.INSTANCE.allItens();
 		return listItens;
 	}
 
-	public boolean atualizarItem(Item item, Item novoItem) {
-		for (int i = 0; i < listItens.size(); i++)
-			if (item.equals(listItens.get(i)))
-				listItens.set(i, novoItem);
-		return true;
+	public List<Item> atualizarItem(Item novoItem) {
+		Itens.INSTANCE.updateItem(item, novoItem);
+		listItens = Itens.INSTANCE.allItens();
+		return listItens;
 	}
 
-	public boolean removerItem(Item item) {
-		if (item != null && listItens.contains(item)) {
-			return listItens.remove(item);
-		} else {
-			return false;
-		}
+	public String removerItem() {
+		Itens.INSTANCE.removeItem(item);
+		listItens = Itens.INSTANCE.allItens();
+		return "listarItens";
 	}
 
 	public void filtrarTabela() {

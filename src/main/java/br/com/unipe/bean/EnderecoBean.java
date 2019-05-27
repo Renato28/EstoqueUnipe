@@ -164,10 +164,10 @@ public class EnderecoBean implements Serializable {
 		return listEndereco;
 	}
 
-	public String atualizarEndereco(Endereco novoEndereco) {
+	public List<Endereco> atualizarEndereco(Endereco novoEndereco) {
 		Enderecos.INSTANCE.updateAdress(endereco, novoEndereco);
 		listEndereco = Enderecos.INSTANCE.allAdress();
-		return "listarEnderecos";
+		return listEndereco;
 	}
 
 	public String removerEndereco() {

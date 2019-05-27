@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/layout/template.xhtml"
+	xmlns:unipe="http://java.sun.com/jsf/composite/unipe">
+	<ui:define name="content">
+		<p:messages showDetail="true" showSummary="false" globalOnly="true" />
+		<p:panel header="Cadastro de Endereco">
+
+			<h:form id="form" prependId="false">
+				<p:panelGrid columns="1">
+
+					<p:outputLabel value="Logradouro:" for="logradouro" />
+					<p:inputText id="logradouro"
+						value="#{usuarioBean.endereco.logradouros}" required="true" />
+
+					<p:outputLabel value="Estado" for="estado" />
+					<p:selectOneMenu id="estado" value="#{usuarioBean.selectEstado}"
+						converter="estadoConverter">
+						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+						<f:selectItems value="#{usuarioBean.listEstados}" />
+						<p:ajax event="change" update="municipio"
+							listener="#{usuarioBean.carregarMunicipios()}" />
+					</p:selectOneMenu>
+					<p:message for="estado" />
+
+					<p:outputLabel value="Municipio" for="municipio" />
+					<p:selectOneMenu id="municipio"
+						value="#{UsuarioBean.endereco.municipio}"
+						converter="cidadeConverter">
+						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+						<f:selectItems value="#{usuarioBean.listMunicipios}" />
+					</p:selectOneMenu>
+					<p:message for="municipio" />
+					
+					<p:outputLabel value="Numero:" for="numero" />
+					<p:inputText id="numero" value="#{usuarioBean.endereco.numero}"
+						required="true" />			
+
+					<p:outputLabel value="Cep:" for="cep" />
+					<p:inputMask mask="99.999-999" id="cep" size="25" value="Cep" />
+					<h:outputText value="#{usuarioBean.endereco.cep}"></h:outputText>
+
+				</p:panelGrid>
+
+				<p:commandButton value="Cadastrar"
+					action="#{enderecoBean.adicionarEndereco()}" ajax="false" />
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>
