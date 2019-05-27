@@ -50,12 +50,12 @@
 
 					<p:column headerText="Ações">
 						<p:commandButton value="Detalhes" icon="fa fa-search"
-							action="#{usuarioBean.carregarDetalhes2(usuario)}"
+							action="#{usuarioBean.carregarDetalhes2}"
 							update=":formDialog:dialogDetalhes"
 							oncomplete="PF('dialogDetail').show()" />
 					</p:column>
 				</p:dataTable>
-				<p:commandButton value="Atualizar"
+				<p:commandButton value="Editar"
 					action="#{usuarioBean.atualizarUsuario}" ajax="false" />
 				<p:commandButton value="Excluir"
 					action="#{usuarioBean.removerUsuario}" ajax="false" />
