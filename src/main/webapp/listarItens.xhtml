@@ -9,8 +9,8 @@
 	<ui:define name="content">
 		<p:panel header="Listar Itens">
 			<h:form>
-				<p:commandButton value="Novo" action="#{itemBean.prepararCadastro}"
-					ajax="false">
+				<p:commandButton value="Novo" 
+				action="#{itemBean.prepararCadastro}" ajax="false">
 				</p:commandButton>
 				<p:commandButton value="Mesma Pagina"
 					action="#{itemBean.prepararList}">
@@ -53,8 +53,8 @@
 				</p:dataTable>
 				<p:commandButton value="Atualizar"
 					action="#{itemBean.atualizarItem}" ajax="false" />
-				<p:commandButton value="Excluir"
-					action="#{itemBean.removerItem}" ajax="false" />
+				<p:commandButton value="Excluir" action="#{itemBean.removerItem}"
+					ajax="false" />
 			</h:form>
 
 			<h:form id="formDialog">
