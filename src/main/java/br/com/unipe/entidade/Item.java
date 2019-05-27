@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import br.com.unipe.enumerator.TipoItem;
-
 
 public class Item implements Serializable{
 
@@ -18,9 +16,8 @@ public class Item implements Serializable{
 	@NotEmpty
 	private String nome;
 	@NotEmpty
-	private Double quantidade;
-	@NotEmpty
-	private TipoItem Tipoitem;
+	private String quantidade;
+	
 	private String option;
 	
 	public String getOption() {
@@ -39,20 +36,12 @@ public class Item implements Serializable{
 		this.nome = nome;
 	}
 
-	public Double getQuantidade() {
+	public String getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(Double quantidade) {
+	public void setQuantidade(String quantidade) {
 		this.quantidade = quantidade;
-	}
-
-	public TipoItem getItem() {
-		return Tipoitem;
-	}
-
-	public void setItem(TipoItem item) {
-		this.Tipoitem = item;
 	}
 
 }

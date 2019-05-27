@@ -21,7 +21,7 @@
 					<p:inputText id="quantidade" value="#{itemBean.item.quantidade}"
 						required="true">
 					</p:inputText>
-					<p:outputLabel value="Itens:" for="itens" />
+					<p:outputLabel value="Tipo:" for="itens" />
 					<p:selectOneListbox id="itens" value="#{itemBean.item.option}">
 						<f:selectItem itemLabel="Alimento" itemValue="1" />
 						<f:selectItem itemLabel="Eletrodomestico" itemValue="2" />
@@ -29,6 +29,8 @@
 						<f:selectItem itemLabel="Informatica" itemValue="4" />
 					</p:selectOneListbox>
 				</p:panelGrid>
+				<p:commandButton value="Cadastrar"
+					action="#{itemBean.adicionarItem()}" ajax="false" />
 			</h:form>
 		</p:panel>
 	</ui:define>

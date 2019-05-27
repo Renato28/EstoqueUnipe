@@ -104,13 +104,13 @@
 						value="#{usuarioBean.endereco.municipios}"
 						converter="cidadeConverter">
 						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
-						<f:selectItems value="#{usuarioBean.listCidades}" />
+						<f:selectItems value="#{usuarioBean.listMunicipios}" />
 					</p:selectOneMenu>
 					<p:message for="municipio" />
 				</p:panelGrid>
 
 				<p:commandButton value="Cadastrar"
-					action="#{usuarioBean.adicionarUsuario}" ajax="false" />
+					action="#{usuarioBean.adicionarUsuario()}" ajax="false" />
 			</h:form>
 		</p:panel>
 	</ui:define>

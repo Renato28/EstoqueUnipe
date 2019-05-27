@@ -9,7 +9,6 @@ import javax.faces.bean.SessionScoped;
 
 import br.com.unipe.entidade.Item;
 import br.com.unipe.enumerator.Itens;
-import br.com.unipe.enumerator.TipoItem;
 
 @ManagedBean(name = "itemBean")
 @SessionScoped
@@ -20,12 +19,17 @@ public class ItemBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Item item;
-	private TipoItem tipoItem;
 
 	private Item selectItem;
 	private List<Item> listItens;
 
 	private String filtro;
+	
+	public ItemBean() {
+		item = new Item();
+		listItens = new ArrayList<>();
+		listItens = Itens.INSTANCE.allItens();
+	}
 
 	public Item getSelectItem() {
 		return selectItem;
@@ -43,12 +47,6 @@ public class ItemBean implements Serializable {
 		this.filtro = filtro;
 	}
 
-	public ItemBean() {
-		item = new Item();
-		listItens = new ArrayList<>();
-		listItens = Itens.INSTANCE.allItens();
-	}
-
 	public String prepararCadastro() {
 		item = new Item();
 		return "cadastroItem";
@@ -58,7 +56,7 @@ public class ItemBean implements Serializable {
 		return "";
 	}
 
-	public boolean addItem(Item item) {
+	public boolean adicionarItem(Item item) {
 		if (item != null && !listItens.contains(item)) {
 			return listItens.add(item);
 		} else {
@@ -70,14 +68,14 @@ public class ItemBean implements Serializable {
 		return listItens;
 	}
 
-	public boolean updateItem(Item item, Item novoItem) {
+	public boolean atualizarItem(Item item, Item novoItem) {
 		for (int i = 0; i < listItens.size(); i++)
 			if (item.equals(listItens.get(i)))
 				listItens.set(i, novoItem);
 		return true;
 	}
 
-	public boolean removeItem(Item item) {
+	public boolean removerItem(Item item) {
 		if (item != null && listItens.contains(item)) {
 			return listItens.remove(item);
 		} else {
@@ -88,7 +86,7 @@ public class ItemBean implements Serializable {
 	public void filtrarTabela() {
 		listItens = new ArrayList<>();
 		for (Item i : Itens.INSTANCE.allItens()) {
-			if (i.getItem().contains(filtro)) {
+			if (i.getOption().contains(filtro)) {
 				listItens.add(i);
 			}
 		}
@@ -111,13 +109,6 @@ public class ItemBean implements Serializable {
 		this.item = item;
 	}
 
-	public TipoItem getTipoItem() {
-		return tipoItem;
-	}
-
-	public void setTipoItem(TipoItem tipoItem) {
-		this.tipoItem = tipoItem;
-	}
 
 	public void setListItem(List<Item> listItem) {
 		this.listItens = listItem;

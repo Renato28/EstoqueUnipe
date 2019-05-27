@@ -38,11 +38,11 @@
 						<h:outputText value="#{item.quantidade}" />
 					</p:column>
 
-					<!-- 					<p:column headerText="Tipo"> -->
-					<!-- 						<p:outputLabel value="Itens:" for="itens" /> -->
-					<!-- 						<p:selectOneListbox id="itens" value="#{itemBean.item.option}"> -->
-					<!-- 						</p:selectOneListbox> -->
-					<!-- 					</p:column> -->
+					<p:column headerText="Tipo">
+						<p:outputLabel value="Itens:" for="itens" />
+						<p:selectOneListbox id="itens" value="#{itemBean.item.option}">
+						</p:selectOneListbox>
+					</p:column>
 
 					<p:column headerText="Ações">
 						<p:commandButton value="Detalhes" icon="fa fa-search"
@@ -51,6 +51,10 @@
 							oncomplete="PF('dialogDetail').show()" />
 					</p:column>
 				</p:dataTable>
+				<p:commandButton value="Atualizar"
+					action="#{itemBean.atualizarItem}" ajax="false" />
+				<p:commandButton value="Excluir"
+					action="#{itemBean.removerItem}" ajax="false" />
 			</h:form>
 
 			<h:form id="formDialog">
