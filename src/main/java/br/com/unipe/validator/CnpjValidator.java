@@ -7,7 +7,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-@FacesValidator("cpfValidator")
+@FacesValidator("cnpjValidator")
 public class CnpjValidator implements Validator {
 
 	@Override

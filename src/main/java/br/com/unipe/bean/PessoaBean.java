@@ -3,16 +3,26 @@ package br.com.unipe.bean;
 import javax.faces.bean.ManagedBean;
 
 import br.com.unipe.entidade.Pessoa;
+import br.com.unipe.enumerator.TipoPessoa;
 
 @ManagedBean(name = "pessoaBean")
 public class PessoaBean {
 
 	private Pessoa pessoa;
+	private TipoPessoa tipo;
 	private Boolean isRederiza = false;
-	
+
 	public PessoaBean() {
-		
+
 		pessoa = new Pessoa();
+	}
+
+	public TipoPessoa getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoPessoa tipo) {
+		this.tipo = tipo;
 	}
 
 	public Pessoa getPessoa() {

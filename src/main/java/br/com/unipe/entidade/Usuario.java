@@ -22,7 +22,7 @@ public class Usuario implements Serializable {
 	@Length(min = 15)
 	@NotEmpty
 	private String nome;
-
+	
 	@NotEmpty
 	private String username;
 

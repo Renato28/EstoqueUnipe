@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -38,31 +39,30 @@
 					</p:selectOneRadio>
 					<p:message for="sexo" />
 
-							<h:outputLabel for="cpf" value="CPF: " />
-							<br></br>
-							<p:inputMask mask="999.999.999-99" converter="cpfConverter"
-								id="cpf" disabled="#{pessoaBean.isRederiza}" />
-							<p></p>
+					<h:outputLabel for="cpf" value="CPF: " />
+					<br></br>
+					<p:inputMask mask="999.999.999-99" converter="cpfConverter"
+						id="cpf" disabled="#{pessoaBean.isRederiza}" />
+					<p></p>
 
-							<h:outputLabel for="tipoPessoa" value="Tipo: " />
-							<br></br>
+					<h:outputLabel for="tipoPessoa" value="Tipo: " />
+					<br></br>
 
-							<p:selectOneMenu id="tipoPessoa" value="#{pessoaBean.pessoa.tipo}">
-								<f:selectItem itemLabel="Pessoa Física" itemValue="F" />
-								<f:selectItem itemLabel="Pesoa Jurídica" itemValue="J" />
-								<p:ajax listener="#{pessoaBean.renderizar}"
-									update=":form1:grade" />
-							</p:selectOneMenu>
-							<p></p>
+					<p:selectOneMenu id="tipoPessoa" value="#{pessoaBean.pessoa.tipo}">
+						<f:selectItem itemLabel="Pessoa Física" itemValue="F" />
+						<f:selectItem itemLabel="Pessoa Jurídica" itemValue="J" />
+						<p:ajax listener="#{pessoaBean.renderizar}" update=":form1:grade" />
+					</p:selectOneMenu>
+					<p></p>
 
-							<p:fieldset id="pac" legend="Empresa"
-								rendered="#{pessoaBean.isRederiza}">
+					<p:fieldset id="pac" legend="Empresa"
+						rendered="#{pessoaBean.isRederiza}">
 
-								<h:outputLabel for="cnpj" value="CNPJ: " />
-								<p:inputMask mask="99.999.999/9999-99" id="cnpj"
-									converter="cnpjConverter"/>
-							</p:fieldset>
-					
+						<h:outputLabel for="cnpj" value="CNPJ: " />
+						<p:inputMask mask="99.999.999/9999-99" id="cnpj"
+							converter="cnpjConverter" />
+					</p:fieldset>
+
 					<p:outputLabel value="Data Nascimento:" for="dtNasc" />
 					<p:calendar id="dtNasc" value="#{usuarioBean.usuario.dtNasc}"
 						required="true" showOn="button" navigator="true"
