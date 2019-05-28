@@ -38,6 +38,10 @@
 					<p:column headerText="Sexo">
 						<h:outputText value="#{usuarioBean.usuario.sexo}" />
 					</p:column>
+					
+					<p:column headerText="Tipo">
+						<h:outputText value="#{usuarioBean.usuario.pessoa.tipo}" />
+					</p:column>
 
 					<p:column headerText="Data Nascimento">
 						<h:outputText value="#{usuarioBean.usuario.dtNasc}">
@@ -70,7 +74,10 @@
 						<p:outputLabel value="Sexo:" />
 						<h:outputText value="#{usuarioBean.usuario.sexo}"
 							converter="sexoConverter" />
-
+							
+						<p:outputLabel value="Tipo:" />
+						<h:outputText value="#{usuarioBean.pessoa.tipo}"/>
+						
 						<p:outputLabel value="Data de Nascimento:" />
 						<h:outputText value="#{usuarioBean.usuario.dtNasc}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />

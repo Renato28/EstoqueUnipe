@@ -41,13 +41,13 @@
 							<h:outputLabel for="cpf" value="CPF: " />
 							<br></br>
 							<p:inputMask mask="999.999.999-99" converter="cpfConverter"
-								id="cpf" value="" disabled="#{pessoaBean.isRederiza}" />
+								id="cpf" disabled="#{pessoaBean.isRederiza}" />
 							<p></p>
 
 							<h:outputLabel for="tipoPessoa" value="Tipo: " />
 							<br></br>
 
-							<p:selectOneMenu id="tipoPessoa" value="#{pessoaBean.opcao}">
+							<p:selectOneMenu id="tipoPessoa" value="#{pessoaBean.pessoa.tipo}">
 								<f:selectItem itemLabel="Pessoa Física" itemValue="F" />
 								<f:selectItem itemLabel="Pesoa Jurídica" itemValue="J" />
 								<p:ajax listener="#{pessoaBean.renderizar}"
@@ -60,7 +60,7 @@
 
 								<h:outputLabel for="cnpj" value="CNPJ: " />
 								<p:inputMask mask="99.999.999/9999-99" id="cnpj"
-									converter="cnpjConverter" value="" />
+									converter="cnpjConverter"/>
 							</p:fieldset>
 					
 					<p:outputLabel value="Data Nascimento:" for="dtNasc" />

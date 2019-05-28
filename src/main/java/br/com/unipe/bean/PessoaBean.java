@@ -2,18 +2,25 @@ package br.com.unipe.bean;
 
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean
+import br.com.unipe.entidade.Pessoa;
+
+@ManagedBean(name = "pessoaBean")
 public class PessoaBean {
 
-	private String opcao;
+	private Pessoa pessoa;
 	private Boolean isRederiza = false;
-
-	public String getOpcao() {
-		return opcao;
+	
+	public PessoaBean() {
+		
+		pessoa = new Pessoa();
 	}
 
-	public void setOpcao(String opcao) {
-		this.opcao = opcao;
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	public Boolean getIsRederiza() {
@@ -25,7 +32,7 @@ public class PessoaBean {
 	}
 
 	public void renderizar() {
-		if (getOpcao().equals("J")) {
+		if (pessoa.getTipo().equals("J")) {
 			isRederiza = true;
 		} else {
 			isRederiza = false;

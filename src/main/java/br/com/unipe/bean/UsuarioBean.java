@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import br.com.unipe.entidade.Endereco;
+import br.com.unipe.entidade.Pessoa;
 import br.com.unipe.entidade.Usuario;
 import br.com.unipe.enumerator.Cidades;
 import br.com.unipe.enumerator.Estados;
@@ -29,6 +30,7 @@ public class UsuarioBean implements Serializable {
 
 	private Usuario usuarios;
 	private Endereco endereco;
+	private Pessoa pessoa;
 
 	private List<String> listNomes;
 	private List<String> listUsernames;
@@ -57,6 +59,7 @@ public class UsuarioBean implements Serializable {
 		usuarios = new Usuario();
 		endereco = new Endereco();
 		usuarios.setEndereco(endereco);
+		pessoa = new Pessoa();
 		listMunicipios = new ArrayList<>();
 		listUsuarios = new ArrayList<>();
 		listUsuarios = Usuarios.INSTANCE.allUsers();
@@ -289,6 +292,14 @@ public class UsuarioBean implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuarios = usuario;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	public List<SelectItem> getListSexo() {

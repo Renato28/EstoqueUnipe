@@ -11,7 +11,6 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.unipe.enumerator.Sexo;
-import br.com.unipe.enumerator.TipoPessoa;
 
 public class Usuario implements Serializable {
 
@@ -43,7 +42,7 @@ public class Usuario implements Serializable {
 	@NotNull
 	private Sexo sexo;
 
-	private TipoPessoa pessoa;
+	private Pessoa pessoa;
 
 	private Integer cpf;
 
@@ -122,11 +121,12 @@ public class Usuario implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public TipoPessoa getPessoa() {
+
+	public Pessoa getPessoa() {
 		return pessoa;
 	}
 
-	public void setPessoa(TipoPessoa pessoa) {
+	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
 
