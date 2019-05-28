@@ -103,7 +103,7 @@
 						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
 						<f:selectItems value="#{usuarioBean.listEstados}" />
 						<p:ajax event="change" update="municipio"
-							listener="#{usuarioBean.carregarMunicipios()}" />
+							listener="#{usuarioBean.carregarMunicipios}" />
 					</p:selectOneMenu>
 					<p:message for="estado" />
 
@@ -118,7 +118,7 @@
 				</p:panelGrid>
 
 				<p:commandButton value="Cadastrar"
-					action="#{usuarioBean.adicionarUsuario()}" ajax="false" />
+					action="#{usuarioBean.adicionarUsuario}" ajax="false" />
 				<p:commandButton value="Limpar" ajax="true" immediate="true" type="reset"/>
 			</h:form>
 		</p:panel>
