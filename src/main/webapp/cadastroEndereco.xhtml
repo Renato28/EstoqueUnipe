@@ -12,10 +12,18 @@
 
 			<h:form id="form" prependId="false">
 				<p:panelGrid columns="1">
+				
+					<p:outputLabel value="Cep:" for="cep" />
+					<p:inputMask mask="99.999-999" id="cep" value="Cep" />
+					<h:outputText value="#{usuarioBean.endereco.cep}"></h:outputText>
 
 					<p:outputLabel value="Logradouro:" for="logradouro" />
 					<p:inputText id="logradouro"
 						value="#{usuarioBean.endereco.logradouros}" required="true" />
+						
+					<p:outputLabel value="Bairro:" for="bairro" />
+					<p:inputText id="bairro"
+						value="#{usuarioBean.endereco.bairro}" required="true" />
 
 					<p:outputLabel value="Estado" for="estado" />
 					<p:selectOneMenu id="estado" value="#{usuarioBean.selectEstado}"
@@ -23,13 +31,13 @@
 						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
 						<f:selectItems value="#{usuarioBean.listEstados}" />
 						<p:ajax event="change" update="municipio"
-							listener="#{usuarioBean.carregarMunicipios()}" />
+							listener="#{usuarioBean.carregarMunicipios}" />
 					</p:selectOneMenu>
 					<p:message for="estado" />
 
 					<p:outputLabel value="Municipio" for="municipio" />
 					<p:selectOneMenu id="municipio"
-						value="#{UsuarioBean.endereco.municipio}"
+						value="#{usuarioBean.endereco.municipio}"
 						converter="cidadeConverter">
 						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
 						<f:selectItems value="#{usuarioBean.listMunicipios}" />
@@ -40,14 +48,10 @@
 					<p:inputText id="numero" value="#{usuarioBean.endereco.numero}"
 						required="true" />			
 
-					<p:outputLabel value="Cep:" for="cep" />
-					<p:inputMask mask="99.999-999" id="cep" size="25" value="Cep" />
-					<h:outputText value="#{usuarioBean.endereco.cep}"></h:outputText>
-
 				</p:panelGrid>
 
 				<p:commandButton value="Cadastrar"
-					action="#{enderecoBean.adicionarEndereco()}" ajax="false" />
+					action="#{enderecoBean.adicionarEndereco}" ajax="false" />
 			</h:form>
 		</p:panel>
 	</ui:define>

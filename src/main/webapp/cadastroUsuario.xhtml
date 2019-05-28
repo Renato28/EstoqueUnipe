@@ -92,29 +92,9 @@
 					<p:message id="DtNasc" for="dtNasc" />
 
 					<p:outputLabel value="Cep:" for="cep" />
-					<p:inputMask mask="99.999-999" id="cep" size="25" value="Cep" />
+					<p:inputMask mask="99.999-999" id="cep" value="Cep" />
 					<h:outputText value="#{usuarioBean.endereco.cep}"></h:outputText>
 
-
-
-					<p:outputLabel value="Estado" for="estado" />
-					<p:selectOneMenu id="estado" value="#{usuarioBean.selectEstado}"
-						converter="estadoConverter">
-						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
-						<f:selectItems value="#{usuarioBean.listEstados}" />
-						<p:ajax event="change" update="municipio"
-							listener="#{usuarioBean.carregarMunicipios}" />
-					</p:selectOneMenu>
-					<p:message for="estado" />
-
-					<p:outputLabel value="Municipio" for="municipio" />
-					<p:selectOneMenu id="municipio"
-						value="#{usuarioBean.endereco.municipio}"
-						converter="cidadeConverter">
-						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
-						<f:selectItems value="#{usuarioBean.listMunicipios}" />
-					</p:selectOneMenu>
-					<p:message for="municipio" />
 				</p:panelGrid>
 
 				<p:commandButton value="Cadastrar"

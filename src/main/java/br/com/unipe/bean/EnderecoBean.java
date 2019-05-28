@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import br.com.unipe.entidade.Endereco;
+import br.com.unipe.entidade.Usuario;
 import br.com.unipe.enumerator.Cidades;
 import br.com.unipe.enumerator.Enderecos;
 import br.com.unipe.enumerator.Estados;
@@ -23,6 +24,7 @@ public class EnderecoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Endereco endereco;
+	private Usuario usuario;
 	private List<String> listLogradouros;
 	private List<SelectItem> listMunicipios;
 	private List<SelectItem> listEstados;
@@ -40,6 +42,8 @@ public class EnderecoBean implements Serializable {
 	public EnderecoBean() {
 
 		endereco = new Endereco();
+		usuario = new Usuario();
+		usuario.setEndereco(endereco);
 		listLogradouros = new ArrayList<>();
 		listMunicipios = new ArrayList<>();
 		listEstados = new ArrayList<>();
@@ -156,6 +160,7 @@ public class EnderecoBean implements Serializable {
 
 	public String adicionarEndereco() {
 		Enderecos.INSTANCE.addAdress(endereco);
+		listEndereco = Enderecos.INSTANCE.allAdress();
 		return "listarEnderecos";
 	}
 
@@ -211,4 +216,14 @@ public class EnderecoBean implements Serializable {
 	public void setListCeps(List<Integer> listCeps) {
 		this.listCeps = listCeps;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 }

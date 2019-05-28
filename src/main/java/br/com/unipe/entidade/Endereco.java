@@ -24,7 +24,7 @@ public class Endereco implements Serializable {
 	private String bairro;
 
 	@NotEmpty
-	private Integer numero;
+	private String numero;
 
 	@NotEmpty
 	private String cep;
@@ -56,11 +56,11 @@ public class Endereco implements Serializable {
 		this.bairro = bairro;
 	}
 
-	public Integer getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Integer numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
