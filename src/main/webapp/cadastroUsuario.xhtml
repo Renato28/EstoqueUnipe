@@ -72,13 +72,13 @@
 					<p:outputLabel value="Cep:" for="cep" />
 					<p:inputMask mask="99.999-999" id="cep" value="Cep" />
 					<h:outputText value="#{usuarioBean.endereco.cep}"></h:outputText>
+					<p:commandButton value="Buscar"
+						action="#{enderecoBean.listarEnderecos}" ajax="false" />
 
 				</p:panelGrid>
-
+				<p></p>
 				<p:commandButton value="Cadastrar"
 					action="#{usuarioBean.adicionarUsuario}" ajax="false" />
-				<p:commandButton value="Limpar" ajax="true" immediate="true"
-					type="reset" />
 			</h:form>
 		</p:panel>
 	</ui:define>

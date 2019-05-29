@@ -247,24 +247,23 @@ public class UsuarioBean implements Serializable {
 
 	public String adicionarUsuario() {
 		Usuarios.INSTANCE.addUsers(usuarios);
-		listUsuarios = Usuarios.INSTANCE.allUsers();
 		return "listarUsuarios";
 	}
 
-	public List<Usuario> listarUsuarios() {
+	public void listarUsuarios() {
 		Usuarios.INSTANCE.allUsers();
-		return listUsuarios;
+//		return listUsuarios;
 	}
 
-	public List<Usuario> atualizarUsuario(Usuario novoUsuario) {
+	public void atualizarUsuario(Usuario novoUsuario) {
 		Usuarios.INSTANCE.updateUsers(usuarios, novoUsuario);
-		listUsuarios = Usuarios.INSTANCE.allUsers();
-		return listUsuarios;
+//		listUsuarios = Usuarios.INSTANCE.allUsers();
+//		return listUsuarios;
 	}
 
 	public String removerUsuario() {
 		Usuarios.INSTANCE.removeUser(usuarios);
-		listUsuarios = Usuarios.INSTANCE.allUsers();
+//		listUsuarios = Usuarios.INSTANCE.allUsers();
 		return "listarUsuarios";
 	}
 
