@@ -2,7 +2,6 @@ package br.com.unipe.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -28,19 +27,12 @@ public class UsuarioBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Usuario usuarios;
+	private Usuario usuario;
 	private Endereco endereco;
 	private Pessoa pessoa;
 
-	private List<String> listNomes;
-	private List<String> listUsernames;
-	private List<String> listPasswords;
 	private List<Endereco> listEnderecos;
-	private List<String> listEmails;
-	private List<Date> listDataNascimento;
 	private List<TipoPessoa> listTipoPessoas;
-	private List<Integer> listCpfs;
-	private List<Integer> listCnpjs;
 
 	private Estados selectEstado;
 	private List<SelectItem> listCidades;
@@ -53,15 +45,18 @@ public class UsuarioBean implements Serializable {
 	private List<Usuario> listUsuarios;
 
 	private String filtro;
+	private Boolean isRenderiza = false;
 
 	public UsuarioBean() {
 
-		usuarios = new Usuario();
+		usuario = new Usuario();
 		endereco = new Endereco();
-		usuarios.setEndereco(endereco);
 		pessoa = new Pessoa();
+		usuario.setEndereco(endereco);
 		listMunicipios = new ArrayList<>();
+		listEstados = new ArrayList<>();
 		listUsuarios = new ArrayList<>();
+		listPessoas = new ArrayList<>();
 		listUsuarios = Usuarios.INSTANCE.allUsers();
 	}
 
@@ -106,11 +101,11 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public Usuario getUsuarios() {
-		return usuarios;
+		return usuario;
 	}
 
 	public void setUsuarios(Usuario usuarios) {
-		this.usuarios = usuarios;
+		this.usuario = usuarios;
 	}
 
 	public List<Usuario> getListUsuarios() {
@@ -129,29 +124,6 @@ public class UsuarioBean implements Serializable {
 		this.listSexos = listSexos;
 	}
 
-	public List<String> getListNomes() {
-		return listNomes;
-	}
-
-	public void setListNomes(List<String> listNomes) {
-		this.listNomes = listNomes;
-	}
-
-	public List<String> getListUsernames() {
-		return listUsernames;
-	}
-
-	public void setListUsernames(List<String> listUsernames) {
-		this.listUsernames = listUsernames;
-	}
-
-	public List<String> getListPasswords() {
-		return listPasswords;
-	}
-
-	public void setListPasswords(List<String> listPasswords) {
-		this.listPasswords = listPasswords;
-	}
 
 	public List<Endereco> getListEnderecos() {
 		return listEnderecos;
@@ -161,21 +133,6 @@ public class UsuarioBean implements Serializable {
 		this.listEnderecos = listEnderecos;
 	}
 
-	public List<String> getListEmails() {
-		return listEmails;
-	}
-
-	public void setListEmails(List<String> listEmails) {
-		this.listEmails = listEmails;
-	}
-
-	public List<Date> getListDataNascimento() {
-		return listDataNascimento;
-	}
-
-	public void setListDataNascimento(List<Date> listDataNascimento) {
-		this.listDataNascimento = listDataNascimento;
-	}
 
 	public List<TipoPessoa> getListTipoPessoas() {
 		return listTipoPessoas;
@@ -183,22 +140,6 @@ public class UsuarioBean implements Serializable {
 
 	public void setListTipoPessoas(List<TipoPessoa> listTipoPessoas) {
 		this.listTipoPessoas = listTipoPessoas;
-	}
-
-	public List<Integer> getListCpfs() {
-		return listCpfs;
-	}
-
-	public void setListCpfs(List<Integer> listCpfs) {
-		this.listCpfs = listCpfs;
-	}
-
-	public List<Integer> getListCnpjs() {
-		return listCnpjs;
-	}
-
-	public void setListCnpjs(List<Integer> listCnpjs) {
-		this.listCnpjs = listCnpjs;
 	}
 
 	public List<SelectItem> getListCidades() {
@@ -214,6 +155,11 @@ public class UsuarioBean implements Serializable {
 		listSexos = new ArrayList<>();
 		for (Sexo s : Sexo.values()) {
 			listSexos.add(new SelectItem(s, s.getLabel()));
+		}
+
+		listPessoas = new ArrayList<>();
+		for (TipoPessoa tipo : TipoPessoa.values()) {
+			listPessoas.add(new SelectItem(tipo, tipo.getLabel()));
 		}
 
 		listCidades = new ArrayList<>();
@@ -237,7 +183,7 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public String prepararCadastro() {
-		usuarios = new Usuario();
+		usuario = new Usuario();
 		return "cadastroUsuario";
 	}
 
@@ -246,24 +192,24 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public String adicionarUsuario() {
-		Usuarios.INSTANCE.addUsers(usuarios);
+		Usuarios.INSTANCE.addUsers(usuario);
 		return "listarUsuarios";
 	}
 
-	public void listarUsuarios() {
+	public List<Usuario> listarUsuarios() {
 		Usuarios.INSTANCE.allUsers();
-//		return listUsuarios;
+		return listUsuarios;
 	}
 
-	public void atualizarUsuario(Usuario novoUsuario) {
-		Usuarios.INSTANCE.updateUsers(usuarios, novoUsuario);
-//		listUsuarios = Usuarios.INSTANCE.allUsers();
-//		return listUsuarios;
+	public List<Usuario> atualizarUsuario(Usuario novoUsuario) {
+		Usuarios.INSTANCE.updateUsers(usuario, novoUsuario);
+		listUsuarios = Usuarios.INSTANCE.allUsers();
+		return listUsuarios;
 	}
 
 	public String removerUsuario() {
-		Usuarios.INSTANCE.removeUser(usuarios);
-//		listUsuarios = Usuarios.INSTANCE.allUsers();
+		Usuarios.INSTANCE.removeUser(usuario);
+		listUsuarios = Usuarios.INSTANCE.allUsers();
 		return "listarUsuarios";
 	}
 
@@ -277,28 +223,20 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public String carregarDetalhes(Usuario usuario) {
-		this.usuarios = usuario;
+		this.usuario = usuario;
 		return "detalhesUsuario";
 	}
 
 	public void carregarDetalhes2(Usuario usuario) {
-		this.usuarios = usuario;
+		this.usuario = usuario;
 	}
 
 	public Usuario getUsuario() {
-		return usuarios;
+		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
-		this.usuarios = usuario;
-	}
-
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+		this.usuario = usuario;
 	}
 
 	public List<SelectItem> getListSexo() {
@@ -317,4 +255,27 @@ public class UsuarioBean implements Serializable {
 		this.filtro = filtro;
 	}
 
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public Boolean getIsRenderiza() {
+		return isRenderiza;
+	}
+
+	public void setIsRenderiza(Boolean isRenderiza) {
+		this.isRenderiza = isRenderiza;
+	}
+
+	public void renderizar() {
+		if (pessoa.getTipo().equals("J")) {
+			isRenderiza = true;
+		} else {
+			isRenderiza = false;
+		}
+	}
 }

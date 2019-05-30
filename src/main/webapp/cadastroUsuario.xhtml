@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -39,24 +38,26 @@
 					</p:selectOneRadio>
 					<p:message for="sexo" />
 
-					<h:outputLabel for="cpf" value="CPF: " />
-					<br></br>
-					<p:inputMask mask="999.999.999-99" converter="cpfConverter"
-						id="cpf" disabled="#{pessoaBean.isRederiza}" />
-					<p></p>
-
 					<h:outputLabel for="tipoPessoa" value="Tipo: " />
 					<br></br>
 
-					<p:selectOneMenu id="tipoPessoa" value="#{pessoaBean.pessoa.tipo}">
-						<f:selectItem itemLabel="Pessoa Física" itemValue="F" />
+					<p:selectOneMenu id="tipoPessoa" value="#{usuarioBean.pessoa.tipo}">
+						<f:selectItem itemLabel="Pessoa Fisica" itemValue="F" />
 						<f:selectItem itemLabel="Pessoa Jurídica" itemValue="J" />
-						<p:ajax listener="#{pessoaBean.renderizar}" update=":form1:grade" />
+						<p:ajax listener="#{usuarioBean.renderizar}" update=":form1:grade" />
 					</p:selectOneMenu>
+					<p></p>
+					
+					<p:fieldset>
+					<h:outputLabel for="cpf" value="CPF: " />
+					<br></br>
+					<p:inputMask mask="999.999.999-99" converter="cpfConverter"
+						id="cpf" disabled="#{usuarioBean.isRenderiza}" />
+					</p:fieldset>
 					<p></p>
 
 					<p:fieldset id="pac" legend="Empresa"
-						rendered="#{pessoaBean.isRederiza}">
+						rendered="#{usuarioBean.isRenderiza}">
 
 						<h:outputLabel for="cnpj" value="CNPJ: " />
 						<p:inputMask mask="99.999.999/9999-99" id="cnpj"

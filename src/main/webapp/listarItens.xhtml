@@ -36,9 +36,7 @@
 					</p:column>
 
 					<p:column headerText="Tipo">
-						<p:outputLabel value="Itens:" for="itens" />
-						<p:selectOneListbox id="itens" value="#{itemBean.item.option}">
-						</p:selectOneListbox>
+						<p:outputLabel id="itens" for="itens" />
 					</p:column>
 
 					<p:column headerText="Ações">
@@ -49,7 +47,7 @@
 					</p:column>
 				</p:dataTable>
 				<p:commandButton value="Editar"
-					action="#{itemBean.atualizarItem}" ajax="false" />
+					action="#{itemBean.atualizarItem(item)}" ajax="false" />
 				<p:commandButton value="Excluir" action="#{itemBean.removerItem}"
 					ajax="false" />
 			</h:form>

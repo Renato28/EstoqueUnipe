@@ -57,7 +57,7 @@
 					</p:column>
 				</p:dataTable>
 				<p:commandButton value="Editar"
-					action="#{usuarioBean.atualizarUsuario}" ajax="false" />
+					action="#{usuarioBean.atualizarUsuario(nome,usuario)}" ajax="false" />
 				<p:commandButton value="Excluir"
 					action="#{usuarioBean.removerUsuario}" ajax="false" />
 			</h:form>

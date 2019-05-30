@@ -30,7 +30,7 @@ public enum Usuarios {
 
 	public boolean updateUsers(Usuario usuario, Usuario novoUsuario) {
 		for (int i = 0; i < listUsuarios.size(); i++)
-			if (usuario.equals(listUsuarios.get(i)))
+			if (usuario.getNome().equals(listUsuarios.get(i)))
 				listUsuarios.set(i, novoUsuario);
 		return true;
 	}

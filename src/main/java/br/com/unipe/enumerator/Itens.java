@@ -10,10 +10,27 @@ public enum Itens {
 	INSTANCE;
 
 	private List<Item> listItens;
+	private String label;
 
 	private Itens() {
 
 		listItens = new ArrayList<>();
+	}
+
+	public List<Item> getListItens() {
+		return listItens;
+	}
+
+	public void setListItens(List<Item> listItens) {
+		this.listItens = listItens;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public boolean addItem(Item item) {

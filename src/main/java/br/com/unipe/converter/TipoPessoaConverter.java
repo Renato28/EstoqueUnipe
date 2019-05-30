@@ -24,11 +24,11 @@ public class TipoPessoaConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if (value != null && !value.equals("")) {
+		if (value instanceof TipoPessoa && value != null) {
 			TipoPessoa tipo = (TipoPessoa) value;
-			return tipo.getLabel();
+			return tipo.getLabel().toString();
 		}
-		return "";
+		return null;
 	}
 
 }
