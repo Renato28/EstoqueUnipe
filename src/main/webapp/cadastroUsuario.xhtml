@@ -10,8 +10,25 @@
 		<p:messages showDetail="true" showSummary="false" globalOnly="true" />
 		<p:panel header="Cadastro de Usuários">
 
+			<h:form id="form2" prependId="false">
+				<p:panelGrid id="gradeCep" columns="1">
+					<p:outputLabel value="Cep:" for="cep" />
+					<p:inputMask mask="99999999" id="cep"
+						value="#{usuarioBean.usuario.endereco.cep}"
+						converter="cepConverter">
+						<p:ajax event="blur" />
+					</p:inputMask>
+
+					<p:commandButton value="Buscar"
+						action="#{usuarioBean.buscarCep(cep)}" ajax="false">
+					</p:commandButton>
+
+				</p:panelGrid>
+			</h:form>
+
 			<h:form id="form1" prependId="false">
 				<p:panelGrid id="grade" columns="1">
+
 
 					<p:outputLabel value="Nome:" for="nome" />
 					<p:inputText id="nome" value="#{usuarioBean.usuario.nome}" />
@@ -47,12 +64,12 @@
 						<p:ajax listener="#{usuarioBean.renderizar}" update=":form1:grade" />
 					</p:selectOneMenu>
 					<p></p>
-					
+
 					<p:fieldset>
-					<h:outputLabel for="cpf" value="CPF: " />
-					<br></br>
-					<p:inputMask mask="999.999.999-99" converter="cpfConverter"
-						id="cpf" disabled="#{usuarioBean.isRenderiza}" />
+						<h:outputLabel for="cpf" value="CPF: " />
+						<br></br>
+						<p:inputMask mask="999.999.999-99" converter="cpfConverter"
+							id="cpf" disabled="#{usuarioBean.isRenderiza}" />
 					</p:fieldset>
 					<p></p>
 
@@ -69,12 +86,6 @@
 						required="true" showOn="button" navigator="true"
 						validator="datanascimentoValidator" />
 					<p:message id="DtNasc" for="dtNasc" />
-
-					<p:outputLabel value="Cep:" for="cep" />
-					<p:inputMask mask="99.999-999" id="cep" value="Cep" />
-					<h:outputText value="#{usuarioBean.endereco.cep}"></h:outputText>
-					<p:commandButton value="Buscar"
-						action="#{enderecoBean.listarEnderecos}" ajax="false" />
 
 				</p:panelGrid>
 				<p></p>

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
@@ -11,7 +12,9 @@ import javax.faces.model.SelectItem;
 import br.com.unipe.entidade.Endereco;
 import br.com.unipe.entidade.Pessoa;
 import br.com.unipe.entidade.Usuario;
+import br.com.unipe.enumerator.Enderecos;
 import br.com.unipe.enumerator.Estados;
+import br.com.unipe.enumerator.Sexo;
 import br.com.unipe.enumerator.TipoPessoa;
 import br.com.unipe.enumerator.Usuarios;
 
@@ -31,7 +34,7 @@ public class UsuarioBean implements Serializable {
 
 	private List<Endereco> listEnderecos;
 	private List<TipoPessoa> listTipoPessoas;
-	
+
 	private Estados selectEstado;
 	private List<SelectItem> listCidades;
 	private List<SelectItem> listMunicipios;
@@ -51,11 +54,14 @@ public class UsuarioBean implements Serializable {
 		endereco = new Endereco();
 		pessoa = new Pessoa();
 		usuario.setEndereco(endereco);
+		listEnderecos = new ArrayList<>();
 		listMunicipios = new ArrayList<>();
 		listEstados = new ArrayList<>();
 		listUsuarios = new ArrayList<>();
 		listPessoas = new ArrayList<>();
+		listSexos = new ArrayList<>();
 		listUsuarios = Usuarios.INSTANCE.allUsers();
+		listEnderecos = Enderecos.INSTANCE.allAdress();
 	}
 
 	public Estados getSelectEstado() {
@@ -122,7 +128,6 @@ public class UsuarioBean implements Serializable {
 		this.listSexos = listSexos;
 	}
 
-
 	public List<Endereco> getListEnderecos() {
 		return listEnderecos;
 	}
@@ -130,7 +135,6 @@ public class UsuarioBean implements Serializable {
 	public void setListEnderecos(List<Endereco> listEnderecos) {
 		this.listEnderecos = listEnderecos;
 	}
-
 
 	public List<TipoPessoa> getListTipoPessoas() {
 		return listTipoPessoas;
@@ -157,6 +161,14 @@ public class UsuarioBean implements Serializable {
 		return "";
 	}
 
+	@PostConstruct
+	public void initSexo() {
+		listSexos = new ArrayList<>();
+		for (Sexo sexo : Sexo.values()) {
+			listSexos.add(new SelectItem(sexo, sexo.getLabel()));
+		}
+	}
+
 	public String adicionarUsuario() {
 		Usuarios.INSTANCE.addUsers(usuario);
 		listUsuarios = Usuarios.INSTANCE.allUsers();
@@ -178,6 +190,16 @@ public class UsuarioBean implements Serializable {
 		Usuarios.INSTANCE.removeUser(usuario);
 		listUsuarios = Usuarios.INSTANCE.allUsers();
 		return "listarUsuarios.jsf";
+	}
+
+	public void buscarCep(String cep) {
+		for (Endereco endereco : listEnderecos) {
+
+			if (endereco.getCep().equals(usuario.getEndereco().getCep())) {
+
+				usuario.setEndereco(endereco);
+			}
+		}
 	}
 
 	public void filtrarTabela() {

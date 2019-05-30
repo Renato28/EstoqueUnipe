@@ -33,7 +33,7 @@ public enum Enderecos {
 			if (endereco.getCep().equals(listEnderecos.get(i)))
 				listEnderecos.set(i, novoEndereco);
 		return true;
-		
+
 	}
 
 	public boolean removeAdress(Endereco endereco) {

@@ -13,7 +13,7 @@ public class Endereco extends Usuario implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@NotEmpty
 	private String logradouro;
 
@@ -94,6 +94,22 @@ public class Endereco extends Usuario implements Serializable {
 
 	public void setMunicipio(Cidades municipio) {
 		this.municipio = municipio;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public Estados getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estados estado) {
+		this.estado = estado;
 	}
 
 	@Override
