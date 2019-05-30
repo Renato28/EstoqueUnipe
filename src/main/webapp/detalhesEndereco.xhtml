@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/layout/template.xhtml"
+	xmlns:unipe="http://java.sun.com/jsf/composite/unipe">
+	<ui:define name="content">
+		<h:outputText value="Detalhes" />
+
+		<h:form>
+			<h:commandLink value="Listar Enderecos" action="listarEnderecos" />
+		</h:form>
+
+		<h:outputLabel value="Logradouro:" />
+		<h:outputText value="#{enderecoBean.endereco.logradouros}" />
+		
+		<h:outputLabel value="Bairro:" />
+		<h:outputText value="#{enderecoBean.endereco.bairro}" />
+
+
+		<h:outputLabel value="Municipio:" />
+		<h:outputText value="#{enderecoBean.endereco.municipio}" />
+
+
+		<h:outputLabel value="Estado:" />
+		<h:outputText value="#{enderecoBean.endereco.estados}" />
+
+
+		<h:outputLabel value="Numero:" />
+		<h:outputText value="#{enderecoBean.endereco.numero}" />
+		
+		<h:outputLabel value="Cep:" />
+		<h:outputText value="#{enderecoBean.endereco.cep}" />
+	</ui:define>
+</ui:composition>
+
+</html>

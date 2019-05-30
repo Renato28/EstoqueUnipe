@@ -33,7 +33,7 @@ public class UsuarioBean implements Serializable {
 
 	private List<Endereco> listEnderecos;
 	private List<TipoPessoa> listTipoPessoas;
-
+	
 	private Estados selectEstado;
 	private List<SelectItem> listCidades;
 	private List<SelectItem> listMunicipios;

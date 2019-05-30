@@ -12,7 +12,7 @@
 
 			<h:form id="form" prependId="false">
 				<p:panelGrid columns="1">
-				
+
 					<p:outputLabel value="Cep:" for="cep" />
 					<p:inputMask mask="99.999-999" id="cep" value="Cep" />
 					<h:outputText value="#{usuarioBean.endereco.cep}"></h:outputText>
@@ -20,10 +20,19 @@
 					<p:outputLabel value="Logradouro:" for="logradouro" />
 					<p:inputText id="logradouro"
 						value="#{usuarioBean.endereco.logradouros}" required="true" />
-						
+
 					<p:outputLabel value="Bairro:" for="bairro" />
-					<p:inputText id="bairro"
-						value="#{usuarioBean.endereco.bairro}" required="true" />
+					<p:inputText id="bairro" value="#{usuarioBean.endereco.bairro}"
+						required="true" />
+
+					<p:outputLabel value="Municipio" for="municipio" />
+					<p:selectOneMenu id="municipio"
+						value="#{usuarioBean.endereco.municipio}"
+						converter="cidadeConverter">
+						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+						<f:selectItems value="#{usuarioBean.listMunicipios}" />
+					</p:selectOneMenu>
+					<p:message for="municipio" />
 
 					<p:outputLabel value="Estado" for="estado" />
 					<p:selectOneMenu id="estado" value="#{usuarioBean.selectEstado}"
@@ -35,23 +44,15 @@
 					</p:selectOneMenu>
 					<p:message for="estado" />
 
-					<p:outputLabel value="Municipio" for="municipio" />
-					<p:selectOneMenu id="municipio"
-						value="#{usuarioBean.endereco.municipio}"
-						converter="cidadeConverter">
-						<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
-						<f:selectItems value="#{usuarioBean.listMunicipios}" />
-					</p:selectOneMenu>
-					<p:message for="municipio" />
-					
 					<p:outputLabel value="Numero:" for="numero" />
 					<p:inputText id="numero" value="#{usuarioBean.endereco.numero}"
-						required="true" />			
+						required="true" />
 
 				</p:panelGrid>
 
 				<p:commandButton value="Cadastrar"
-					action="#{enderecoBean.adicionarEndereco}" ajax="false" />
+					action="#{enderecoBean.adicionarEndereco}" process="@form"
+					ajax="false" />
 			</h:form>
 		</p:panel>
 	</ui:define>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/layout/template.xhtml"
+	xmlns:unipe="http://java.sun.com/jsf/composite/unipe">
+	<ui:define name="content">
+		<h:outputText value="Detalhes" />
+
+		<h:form>
+			<h:commandLink value="Listar Itens" action="listarItens" />
+		</h:form>
+
+		<h:outputLabel value="Nome:" />
+		<h:outputText value="#{itemBean.item.nome}" />
+		
+		<h:outputLabel value="Quantidade:" />
+		<h:outputText value="#{itemBean.item.quantidade}" />
+
+
+		<h:outputLabel value="Tipo:" />
+		<h:outputText value="#{itemBean.item.option}" />
+
+	</ui:define>
+</ui:composition>
+
+</html>
