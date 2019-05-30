@@ -30,9 +30,10 @@ public enum Enderecos {
 
 	public boolean updateAdress(Endereco endereco, Endereco novoEndereco) {
 		for (int i = 0; i < listEnderecos.size(); i++)
-			if (endereco.equals(listEnderecos.get(i)))
+			if (endereco.getCep().equals(listEnderecos.get(i)))
 				listEnderecos.set(i, novoEndereco);
 		return true;
+		
 	}
 
 	public boolean removeAdress(Endereco endereco) {

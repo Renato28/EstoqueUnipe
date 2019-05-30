@@ -29,32 +29,32 @@
 					</f:facet>
 
 					<p:column headerText="Cep">
-						<h:outputText value="#{usuarioBean.endereco.cep}" />
+						<h:outputText value="#{enderecoBean.endereco.cep}" />
 					</p:column>
 
 					<p:column headerText="Logradouro">
-						<h:outputText value="#{usuarioBean.endereco.logradouros}" />
+						<h:outputText value="#{enderecoBean.endereco.logradouros}" />
 					</p:column>
 					
 					<p:column headerText="Bairro">
-						<h:outputText value="#{usuarioBean.endereco.bairro}" />
+						<h:outputText value="#{enderecoBean.endereco.bairro}" />
 					</p:column>
 					
 					<p:column headerText="Municipio">
-						<h:outputText value="#{usuarioBean.endereco.municipio}" />
+						<h:outputText value="#{enderecoBean.endereco.municipio}" />
 					</p:column>
 
 					<p:column headerText="Estado">
-						<h:outputText value="#{usuarioBean.endereco.estados}" />
+						<h:outputText value="#{enderecoBean.endereco.estados}" />
 					</p:column>
 
 					<p:column headerText="Numero">
-						<h:outputText value="#{usuarioBean.endereco.numero}" />
+						<h:outputText value="#{enderecoBean.endereco.numero}" />
 					</p:column>
 
 					<p:column headerText="Ações">
 						<p:commandButton value="Detalhes" icon="fa fa-search"
-							action="#{usuarioBean.carregarDetalhes2}"
+							action="#{enderecoBean.carregarDetalhes2}"
 							update=":formDialog:dialogDetalhes"
 							oncomplete="PF('dialogDetail').show()" />
 					</p:column>
@@ -70,6 +70,9 @@
 					<p:panelGrid id="panelDetail" columns="2">
 						<p:outputLabel value="Logradouro:" />
 						<h:outputText value="#{enderecoBean.endereco.logradouros}" />
+						
+						<p:outputLabel value="Bairro:" />
+						<h:outputText value="#{enderecoBean.endereco.bairro}" />
 
 						<p:outputLabel value="Municipio:" />
 						<h:outputText value="#{enderecoBean.endereco.municipios}" />

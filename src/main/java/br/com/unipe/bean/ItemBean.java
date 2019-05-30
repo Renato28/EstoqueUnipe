@@ -19,7 +19,7 @@ public class ItemBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Item item;
-
+	private Item novoItem;
 	private Item selectItem;
 	private List<Item> listItens;
 
@@ -62,15 +62,15 @@ public class ItemBean implements Serializable {
 		return "listarItens";
 	}
 
-	public List<Item> listarItens() {
-		Itens.INSTANCE.allItens();
-		return listItens;
+	public String listarItens() {
+		listItens = Itens.INSTANCE.allItens();
+		return "listarItens.jsf";
 	}
 
-	public List<Item> atualizarItem(Item novoItem) {
+	public String atualizarItem() {
 		Itens.INSTANCE.updateItem(item, novoItem);
 		listItens = Itens.INSTANCE.allItens();
-		return listItens;
+		return "listarItens.jsf";
 	}
 
 	public String removerItem() {

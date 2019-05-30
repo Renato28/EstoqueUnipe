@@ -47,7 +47,7 @@ public enum Itens {
 
 	public boolean updateItem(Item item, Item novoItem) {
 		for (int i = 0; i < listItens.size(); i++)
-			if (item.equals(listItens.get(i)))
+			if (item.getNome().equals(listItens.get(i)))
 				listItens.set(i, novoItem);
 		return true;
 	}

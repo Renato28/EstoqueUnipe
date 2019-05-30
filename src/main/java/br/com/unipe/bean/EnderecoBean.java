@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
@@ -16,7 +17,7 @@ import br.com.unipe.enumerator.Estados;
 
 @ManagedBean(name = "enderecoBean")
 @SessionScoped
-public class EnderecoBean implements Serializable {
+public class EnderecoBean extends UsuarioBean implements Serializable {
 
 	/**
 	 * 
@@ -24,13 +25,10 @@ public class EnderecoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Endereco endereco;
+	private Endereco novoEndereco;
 	private Usuario usuario;
-	private List<String> listLogradouros;
 	private List<SelectItem> listMunicipios;
 	private List<SelectItem> listEstados;
-	private List<String> listBairros;
-	private List<Integer> listNumeros;
-	private List<Integer> listCeps;
 
 	private List<Endereco> listEndereco;
 	private List<SelectItem> listCidades;
@@ -44,17 +42,15 @@ public class EnderecoBean implements Serializable {
 		endereco = new Endereco();
 		usuario = new Usuario();
 		usuario.setEndereco(endereco);
-		listLogradouros = new ArrayList<>();
+
 		listMunicipios = new ArrayList<>();
 		listEstados = new ArrayList<>();
-		listBairros = new ArrayList<>();
-		listNumeros = new ArrayList<>();
-		listCeps = new ArrayList<>();
 		listEndereco = new ArrayList<>();
 		listEndereco = Enderecos.INSTANCE.allAdress();
 
 	}
 
+	@PostConstruct
 	public void initCidades() {
 		listCidades = new ArrayList<>();
 		for (Cidades cidades : Cidades.values()) {
@@ -74,9 +70,6 @@ public class EnderecoBean implements Serializable {
 				listMunicipios.add(new SelectItem(cidades, cidades.getLabel()));
 		}
 
-		listLogradouros = new ArrayList<>();
-		listLogradouros.add("Rua Indonésia");
-		listLogradouros.add("Rua Guatemala");
 	}
 
 	public void filtrarTabela() {
@@ -95,14 +88,6 @@ public class EnderecoBean implements Serializable {
 
 	public void carregarDetalhes2(Endereco endereco) {
 		this.endereco = endereco;
-	}
-
-	public List<String> getListLogradouros() {
-		return listLogradouros;
-	}
-
-	public void setListLogradouros(List<String> listLogradouros) {
-		this.listLogradouros = listLogradouros;
 	}
 
 	public List<SelectItem> getListCidades() {
@@ -129,14 +114,6 @@ public class EnderecoBean implements Serializable {
 		this.listEstados = listEstados;
 	}
 
-	public List<String> getListBairros() {
-		return listBairros;
-	}
-
-	public void setListBairros(List<String> listBairros) {
-		this.listBairros = listBairros;
-	}
-
 	public List<SelectItem> getListMunicipios() {
 		return listMunicipios;
 	}
@@ -161,24 +138,24 @@ public class EnderecoBean implements Serializable {
 	public String adicionarEndereco() {
 		Enderecos.INSTANCE.addAdress(endereco);
 		listEndereco = Enderecos.INSTANCE.allAdress();
-		return "listarEnderecos";
+		return "listarEnderecos.jsf";
 	}
 
-	public List<Endereco> listarEnderecos() {
-		Enderecos.INSTANCE.allAdress();
-		return listEndereco;
+	public String listarEnderecos() {
+		listEndereco = Enderecos.INSTANCE.allAdress();
+		return "listarEnderecos.jsf";
 	}
 
-	public List<Endereco> atualizarEndereco(Endereco novoEndereco) {
+	public String atualizarEndereco() {
 		Enderecos.INSTANCE.updateAdress(endereco, novoEndereco);
 		listEndereco = Enderecos.INSTANCE.allAdress();
-		return listEndereco;
+		return "listarEnderecos.jsf";
 	}
 
 	public String removerEndereco() {
 		Enderecos.INSTANCE.removeAdress(endereco);
 		listEndereco = Enderecos.INSTANCE.allAdress();
-		return "listarEnderecos";
+		return "listarEnderecos.jsf";
 	}
 
 	public Endereco getEndereco() {
@@ -201,22 +178,6 @@ public class EnderecoBean implements Serializable {
 		this.listEndereco = listEndereco;
 	}
 
-	public List<Integer> getListNumeros() {
-		return listNumeros;
-	}
-
-	public void setListNumeros(List<Integer> listNumeros) {
-		this.listNumeros = listNumeros;
-	}
-
-	public List<Integer> getListCeps() {
-		return listCeps;
-	}
-
-	public void setListCeps(List<Integer> listCeps) {
-		this.listCeps = listCeps;
-	}
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -224,6 +185,5 @@ public class EnderecoBean implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
+
 }

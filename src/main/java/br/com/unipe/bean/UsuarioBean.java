@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
@@ -12,9 +11,7 @@ import javax.faces.model.SelectItem;
 import br.com.unipe.entidade.Endereco;
 import br.com.unipe.entidade.Pessoa;
 import br.com.unipe.entidade.Usuario;
-import br.com.unipe.enumerator.Cidades;
 import br.com.unipe.enumerator.Estados;
-import br.com.unipe.enumerator.Sexo;
 import br.com.unipe.enumerator.TipoPessoa;
 import br.com.unipe.enumerator.Usuarios;
 
@@ -28,6 +25,7 @@ public class UsuarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Usuario usuario;
+	private Usuario novoUsuario;
 	private Endereco endereco;
 	private Pessoa pessoa;
 
@@ -150,38 +148,6 @@ public class UsuarioBean implements Serializable {
 		this.listCidades = listCidades;
 	}
 
-	@PostConstruct
-	public void initSexo() {
-		listSexos = new ArrayList<>();
-		for (Sexo s : Sexo.values()) {
-			listSexos.add(new SelectItem(s, s.getLabel()));
-		}
-
-		listPessoas = new ArrayList<>();
-		for (TipoPessoa tipo : TipoPessoa.values()) {
-			listPessoas.add(new SelectItem(tipo, tipo.getLabel()));
-		}
-
-		listCidades = new ArrayList<>();
-		for (Cidades cidade : Cidades.values()) {
-			listCidades.add(new SelectItem(cidade, cidade.getLabel()));
-		}
-
-		listEstados = new ArrayList<>();
-		for (Estados estado : Estados.values()) {
-			listEstados.add(new SelectItem(estado, estado.getLabel()));
-		}
-	}
-
-	public void carregarMunicipios() {
-		listMunicipios = new ArrayList<>();
-		for (Cidades cidade : Cidades.values()) {
-			if (selectEstado.name().equals(cidade.getEstado()))
-				listMunicipios.add(new SelectItem(cidade, cidade.getLabel()));
-		}
-
-	}
-
 	public String prepararCadastro() {
 		usuario = new Usuario();
 		return "cadastroUsuario";
@@ -193,24 +159,25 @@ public class UsuarioBean implements Serializable {
 
 	public String adicionarUsuario() {
 		Usuarios.INSTANCE.addUsers(usuario);
-		return "listarUsuarios";
+		listUsuarios = Usuarios.INSTANCE.allUsers();
+		return "listarUsuarios.jsf";
 	}
 
-	public List<Usuario> listarUsuarios() {
-		Usuarios.INSTANCE.allUsers();
-		return listUsuarios;
+	public String listarUsuarios() {
+		listUsuarios = Usuarios.INSTANCE.allUsers();
+		return "listarUsuarios.jsf";
 	}
 
-	public List<Usuario> atualizarUsuario(Usuario novoUsuario) {
+	public String atualizarUsuario() {
 		Usuarios.INSTANCE.updateUsers(usuario, novoUsuario);
 		listUsuarios = Usuarios.INSTANCE.allUsers();
-		return listUsuarios;
+		return "listarUsuarios.jsf";
 	}
 
 	public String removerUsuario() {
 		Usuarios.INSTANCE.removeUser(usuario);
 		listUsuarios = Usuarios.INSTANCE.allUsers();
-		return "listarUsuarios";
+		return "listarUsuarios.jsf";
 	}
 
 	public void filtrarTabela() {

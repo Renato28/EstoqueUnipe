@@ -9,7 +9,7 @@
 		<p:panel header="Seja Bem-Vindo #{usuario}">
 			<br />
 			<p:panelGrid columns="3" layout="grid">
-				<ui:repeat var="valor" value="#{enderecoBean.listLogradouros}">
+				<ui:repeat var="valor" value="#{enderecoBean.endereco.logradouros}">
 					<h:outputText value="#{valor}" />
 					<p:column>
 						<p:inputText value="#{valor}" />
