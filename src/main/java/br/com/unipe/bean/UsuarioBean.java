@@ -13,7 +13,7 @@ import br.com.unipe.entidade.Endereco;
 import br.com.unipe.entidade.Pessoa;
 import br.com.unipe.entidade.Usuario;
 import br.com.unipe.enumerator.Enderecos;
-import br.com.unipe.enumerator.Estados;
+
 import br.com.unipe.enumerator.Sexo;
 import br.com.unipe.enumerator.TipoPessoa;
 import br.com.unipe.enumerator.Usuarios;
@@ -28,17 +28,12 @@ public class UsuarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Usuario usuario;
-	private Usuario novoUsuario;
+	private int id;
 	private Endereco endereco;
 	private Pessoa pessoa;
 
 	private List<Endereco> listEnderecos;
 	private List<TipoPessoa> listTipoPessoas;
-
-	private Estados selectEstado;
-	private List<SelectItem> listCidades;
-	private List<SelectItem> listMunicipios;
-	private List<SelectItem> listEstados;
 
 	private List<SelectItem> listSexos;
 	private List<SelectItem> listPessoas;
@@ -55,8 +50,6 @@ public class UsuarioBean implements Serializable {
 		pessoa = new Pessoa();
 		usuario.setEndereco(endereco);
 		listEnderecos = new ArrayList<>();
-		listMunicipios = new ArrayList<>();
-		listEstados = new ArrayList<>();
 		listUsuarios = new ArrayList<>();
 		listPessoas = new ArrayList<>();
 		listSexos = new ArrayList<>();
@@ -64,29 +57,6 @@ public class UsuarioBean implements Serializable {
 		listEnderecos = Enderecos.INSTANCE.allAdress();
 	}
 
-	public Estados getSelectEstado() {
-		return selectEstado;
-	}
-
-	public void setSelectEstado(Estados selectEstado) {
-		this.selectEstado = selectEstado;
-	}
-
-	public List<SelectItem> getListMunicipios() {
-		return listMunicipios;
-	}
-
-	public void setListMunicipios(List<SelectItem> listMunicipios) {
-		this.listMunicipios = listMunicipios;
-	}
-
-	public List<SelectItem> getListEstados() {
-		return listEstados;
-	}
-
-	public void setListEstados(List<SelectItem> listEstados) {
-		this.listEstados = listEstados;
-	}
 
 	public Endereco getEndereco() {
 		return endereco;
@@ -144,14 +114,6 @@ public class UsuarioBean implements Serializable {
 		this.listTipoPessoas = listTipoPessoas;
 	}
 
-	public List<SelectItem> getListCidades() {
-		return listCidades;
-	}
-
-	public void setListCidades(List<SelectItem> listCidades) {
-		this.listCidades = listCidades;
-	}
-
 	public String prepararCadastro() {
 		usuario = new Usuario();
 		return "cadastroUsuario";
@@ -171,7 +133,7 @@ public class UsuarioBean implements Serializable {
 
 	public String adicionarUsuario() {
 		Usuarios.INSTANCE.addUsers(usuario);
-//		listUsuarios = Usuarios.INSTANCE.allUsers();
+		listUsuarios = Usuarios.INSTANCE.allUsers();
 		return "listarUsuarios.jsf";
 	}
 
@@ -181,7 +143,7 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public String atualizarUsuario() {
-		Usuarios.INSTANCE.updateUsers(usuario, novoUsuario);
+		Usuarios.INSTANCE.updateUsers(id, usuario);
 		listUsuarios = Usuarios.INSTANCE.allUsers();
 		return "listarUsuarios.jsf";
 	}
@@ -190,6 +152,20 @@ public class UsuarioBean implements Serializable {
 		Usuarios.INSTANCE.removeUser(usuario);
 		listUsuarios = Usuarios.INSTANCE.allUsers();
 		return "listarUsuarios.jsf";
+	}
+	
+	public void limparFormulario() {
+		
+		usuario.setNome("");
+		usuario.setUsername("");
+		usuario.setEmail("");
+		usuario.setPassword("");
+		usuario.setSexo(null);
+		usuario.setTipo(null);
+		usuario.setCpf("");
+		usuario.setCnpj("");
+		usuario.setDtNasc(null);
+		
 	}
 
 	public void buscarCep(String cep) {

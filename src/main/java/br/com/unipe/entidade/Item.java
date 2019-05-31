@@ -11,12 +11,22 @@ public class Item implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private int id;
+
 	@NotEmpty
 	private String nome;
 	@NotEmpty
 	private String quantidade;
 
 	private String option;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getOption() {
 		return option;
@@ -46,7 +56,7 @@ public class Item implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 
@@ -59,10 +69,7 @@ public class Item implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
+		if (id != other.id)
 			return false;
 		return true;
 	}

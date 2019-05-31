@@ -54,6 +54,9 @@
 				<p:commandButton value="Cadastrar"
 					action="#{enderecoBean.adicionarEndereco}" 
 					ajax="false" />
+				<p:commandButton value="Limpar"
+					actionListener="#{enderecoBean.limparFormulario}" 
+					ajax="false" />
 			</h:form>
 		</p:panel>
 	</ui:define>

@@ -16,11 +16,11 @@ public enum Usuarios {
 		listUsuarios = new ArrayList<>();
 	}
 
-	public boolean addUsers(Usuario usuario) {
+	public void addUsers(Usuario usuario) {
+
 		if (usuario != null && !listUsuarios.contains(usuario)) {
-			return listUsuarios.add(usuario);
-		} else {
-			return false;
+			listUsuarios.add(usuario);
+
 		}
 	}
 
@@ -28,18 +28,17 @@ public enum Usuarios {
 		return listUsuarios;
 	}
 
-	public boolean updateUsers(Usuario usuario, Usuario novoUsuario) {
+	public void updateUsers(int id, Usuario usuario) {
 		for (int i = 0; i < listUsuarios.size(); i++)
-			if (usuario.equals(listUsuarios.get(i)))
-				listUsuarios.set(i, novoUsuario);
-		return true;
+			if (usuario.equals(listUsuarios.get(i)) && usuario.getId() != (id))
+				;
+		listUsuarios.set(id, usuario);
+
 	}
 
-	public boolean removeUser(Usuario usuario) {
+	public void removeUser(Usuario usuario) {
 		if (usuario != null && listUsuarios.contains(usuario)) {
-			return listUsuarios.remove(usuario);
-		} else {
-			return false;
+			listUsuarios.remove(usuario);
 		}
 	}
 

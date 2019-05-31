@@ -6,21 +6,18 @@
 <ui:composition template="/layout/template.xhtml"
 	xmlns:unipe="http://java.sun.com/jsf/composite/unipe">
 	<ui:define name="content">
-		<h:outputText value="Detalhes" />
+		
 
 		<h:form>
-			<h:commandLink value="Listar Itens" action="listarItens" />
+			<h:commandLink value="Detalhes Itens" action="listarItens" />
 		</h:form>
-
-		<h:outputLabel value="Nome:" />
-		<h:outputText value="#{itemBean.item.nome}" />
+		<h:outputText value="Detalhes"/>
+		<!--  -->
+		<h:outputLabel value="Nome:"/><h:outputText value="#{itemBean.item.nome}"/>
 		
-		<h:outputLabel value="Quantidade:" />
-		<h:outputText value="#{itemBean.item.quantidade}" />
+		<h:outputLabel value="Quantidade:"/><h:outputText value="#{itemBean.item.quantidade}"/>
 
-
-		<h:outputLabel value="Tipo:" />
-		<h:outputText value="#{itemBean.item.option}" />
+		<h:outputLabel value="Tipo:"/><h:outputText value="#{itemBean.item.option}"/>
 
 	</ui:define>
 </ui:composition>

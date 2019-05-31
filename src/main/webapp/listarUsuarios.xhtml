@@ -34,13 +34,19 @@
 					<p:column headerText="Username">
 						<h:outputText value="#{usuarioBean.usuario.username}" />
 					</p:column>
+					
+					<p:outputLabel value="Email:" />
+						<h:outputText value="#{usuarioBean.usuario.email}" />
+					
+					<p:outputLabel value="CPF:" />
+						<h:outputText value="#{usuarioBean.usuario.cpf}" />
 
 					<p:column headerText="Sexo">
 						<h:outputText value="#{usuarioBean.usuario.sexo}" />
 					</p:column>
 					
 					<p:column headerText="Tipo">
-						<h:outputText value="#{usuarioBean.pessoa.tipo}" />
+						<h:outputText value="#{usuarioBean.usuario.tipo}" />
 					</p:column>
 
 					<p:column headerText="Data Nascimento">
@@ -70,6 +76,12 @@
 
 						<p:outputLabel value="Username:" />
 						<h:outputText value="#{usuarioBean.usuario.username}" />
+						
+						<p:outputLabel value="Email:" />
+						<h:outputText value="#{usuarioBean.usuario.email}" />
+						
+						<p:outputLabel value="CPF:" />
+						<h:outputText value="#{usuarioBean.usuario.tipo}" />
 
 						<p:outputLabel value="Sexo:" />
 						<h:outputText value="#{usuarioBean.usuario.sexo}"

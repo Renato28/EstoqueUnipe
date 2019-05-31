@@ -31,7 +31,10 @@
 				</p:panelGrid>
 				<p:commandButton value="Cadastrar"
 					action="#{itemBean.adicionarItem}" ajax="false" />
+				<p:commandButton value="Limpar"
+					actionListener="#{itemBean.limparFormulario}" ajax="false" />
 			</h:form>
+
 		</p:panel>
 	</ui:define>
 </ui:composition>

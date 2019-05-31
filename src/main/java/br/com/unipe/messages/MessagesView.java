@@ -10,7 +10,8 @@ public class MessagesView {
 	public void info() {
 
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Info", "Primefaces Rocks"));
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo com sucesso", "Usuario salvo com sucesso"));
+				
 	}
 
 	public void warn() {

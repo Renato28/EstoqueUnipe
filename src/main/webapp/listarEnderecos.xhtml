@@ -45,7 +45,7 @@
 					</p:column>
 
 					<p:column headerText="Estado">
-						<h:outputText value="#{enderecoBean.endereco.estados}" />
+						<h:outputText value="#{enderecoBean.endereco.estado}" />
 					</p:column>
 
 					<p:column headerText="Numero">
@@ -78,7 +78,7 @@
 						<h:outputText value="#{enderecoBean.endereco.municipios}" />
 
 						<p:outputLabel value="Estado:" />
-						<h:outputText value="#{enderecoBean.endereco.estados}"
+						<h:outputText value="#{enderecoBean.endereco.estado}"
 							converter="estadoConverter" />
 
 						<p:outputLabel value="Numero:" />

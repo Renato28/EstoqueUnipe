@@ -16,11 +16,11 @@ public enum Enderecos {
 		listEnderecos = new ArrayList<>();
 	}
 
-	public boolean addAdress(Endereco endereco) {
+	public void addAdress(Endereco endereco) {
+
 		if (endereco != null && !listEnderecos.contains(endereco)) {
-			return listEnderecos.add(endereco);
-		} else {
-			return false;
+			listEnderecos.add(endereco);
+
 		}
 	}
 
@@ -28,19 +28,17 @@ public enum Enderecos {
 		return listEnderecos;
 	}
 
-	public boolean updateAdress(Endereco endereco, Endereco novoEndereco) {
+	public void updateAdress(int id, Endereco endereco) {
 		for (int i = 0; i < listEnderecos.size(); i++)
-			if (endereco.getCep().equals(listEnderecos.get(i)))
-				listEnderecos.set(i, novoEndereco);
-		return true;
+			if (endereco.equals(listEnderecos.get(i)) && endereco.getId() != (id))
+				;
+		listEnderecos.set(id, endereco);
 
 	}
 
-	public boolean removeAdress(Endereco endereco) {
+	public void removeAdress(Endereco endereco) {
 		if (endereco != null && listEnderecos.contains(endereco)) {
-			return listEnderecos.remove(endereco);
-		} else {
-			return false;
+			listEnderecos.remove(endereco);
 		}
 	}
 

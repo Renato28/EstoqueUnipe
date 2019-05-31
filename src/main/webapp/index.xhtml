@@ -9,14 +9,14 @@
 		<p:panel header="Seja Bem-Vindo #{usuario}">
 			<br />
 			<p:panelGrid columns="3" layout="grid">
-				<ui:repeat var="valor" value="#{enderecoBean.endereco.logradouros}">
-					<h:outputText value="#{valor}" />
-					<p:column>
-						<p:inputText value="#{valor}" />
-						<p:commandButton value="Ação" />
-					</p:column>
-					<br />
-				</ui:repeat>
+
+				<h:outputText value="#{valor}" />
+				<p:column>
+					<p:inputText value="#{valor}" />
+					<p:commandButton value="Ação" />
+				</p:column>
+				<br />
+
 			</p:panelGrid>
 		</p:panel>
 	</ui:define>

@@ -25,16 +25,16 @@ public class EnderecoBean extends UsuarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Endereco endereco;
-	private Endereco novoEndereco;
+	private int id;
 	private Usuario usuario;
-	private List<SelectItem> listMunicipios;
-	private List<SelectItem> listEstados;
-
+	
 	private List<Endereco> listEndereco;
-	private List<SelectItem> listCidades;
 
 	private Estados selectEstado;
-
+	private List<SelectItem> listEstados;
+	private List<SelectItem> listMunicipios;
+	private List<SelectItem> listCidades;
+	
 	private String filtro;
 
 	public EnderecoBean() {
@@ -138,7 +138,7 @@ public class EnderecoBean extends UsuarioBean implements Serializable {
 	public String adicionarEndereco() {
 		Enderecos.INSTANCE.addAdress(endereco);
 		listEndereco = Enderecos.INSTANCE.allAdress();
-		return "listarEnderecos.jsf?facesRedirect=true";
+		return "listarEnderecos.jsf";
 	}
 
 	public String listarEnderecos() {
@@ -147,7 +147,7 @@ public class EnderecoBean extends UsuarioBean implements Serializable {
 	}
 
 	public String atualizarEndereco() {
-		Enderecos.INSTANCE.updateAdress(endereco, novoEndereco);
+		Enderecos.INSTANCE.updateAdress(id, endereco);
 		listEndereco = Enderecos.INSTANCE.allAdress();
 		return "listarEnderecos.jsf";
 	}
@@ -156,6 +156,17 @@ public class EnderecoBean extends UsuarioBean implements Serializable {
 		Enderecos.INSTANCE.removeAdress(endereco);
 		listEndereco = Enderecos.INSTANCE.allAdress();
 		return "listarEnderecos.jsf";
+	}
+	
+public void limparFormulario() {
+		
+		endereco.setCep("");
+		endereco.setLogradouro("");
+		endereco.setBairro("");
+//		endereco.setEstado(null);
+		endereco.setMunicipio(null);
+		endereco.setNumero("");
+		
 	}
 
 	public Endereco getEndereco() {

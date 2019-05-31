@@ -83,14 +83,16 @@
 
 					<p:outputLabel value="Data Nascimento:" for="dtNasc" />
 					<p:calendar id="dtNasc" value="#{usuarioBean.usuario.dtNasc}"
-						required="true" showOn="button" navigator="true"
+						 required="true" showOn="button" navigator="true"
 						validator="datanascimentoValidator" />
 					<p:message id="DtNasc" for="dtNasc" />
 
 				</p:panelGrid>
 				<p></p>
 				<p:commandButton value="Cadastrar"
-					action="#{usuarioBean.adicionarUsuario}" ajax="false" />
+					action="#{usuarioBean.adicionarUsuario}" ajax="false" update=":form1" />
+				<p:commandButton value="Limpar"
+					actionListener="#{usuarioBean.limparFormulario}" ajax="false" />
 			</h:form>
 		</p:panel>
 	</ui:define>

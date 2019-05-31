@@ -26,6 +26,9 @@
 						validator="emailValidator">
 					</p:inputText>
 					<p:message for="email" />
+					
+					<p:outputLabel value="CPF:" for="cpf" />
+					<p:inputText id="nome" value="#{usuarioBean.usuario.tipo}" />
 
 					<p:outputLabel value="Password:" for="passwd" />
 					<p:password id="passwd" value="#{usuarioBean.usuario.password}">
@@ -73,7 +76,7 @@
 
 				</p:panelGrid>
 				<p></p>
-				<p:commandButton value="Salvar"
+				<p:commandButton value="Salvar" update=":form1"
 					action="#{usuarioBean.adicionarUsuario}" ajax="false" />
 			</h:form>
 		</p:panel>

@@ -14,6 +14,8 @@ public class Endereco extends Usuario implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private int id;
+
 	@NotEmpty
 	private String logradouro;
 
@@ -32,6 +34,14 @@ public class Endereco extends Usuario implements Serializable {
 	@NotEmpty
 	private String cep;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Cidades getMunicipios() {
 		return municipio;
 	}
@@ -40,12 +50,12 @@ public class Endereco extends Usuario implements Serializable {
 		this.municipio = municipios;
 	}
 
-	public Estados getEstados() {
+	public Estados getEstado() {
 		return estado;
 	}
 
-	public void setEstados(Estados estados) {
-		this.estado = estados;
+	public void setEstado(Estados estado) {
+		this.estado = estado;
 	}
 
 	public String getBairro() {
@@ -104,19 +114,11 @@ public class Endereco extends Usuario implements Serializable {
 		this.logradouro = logradouro;
 	}
 
-	public Estados getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estados estado) {
-		this.estado = estado;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
+		int result = super.hashCode();
+		result = prime * result + id;
 		return result;
 	}
 
@@ -124,15 +126,12 @@ public class Endereco extends Usuario implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Endereco other = (Endereco) obj;
-		if (cep == null) {
-			if (other.cep != null)
-				return false;
-		} else if (!cep.equals(other.cep))
+		if (id != other.id)
 			return false;
 		return true;
 	}

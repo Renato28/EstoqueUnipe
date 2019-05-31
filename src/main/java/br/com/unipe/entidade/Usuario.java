@@ -20,6 +20,8 @@ public class Usuario implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private int id;
+
 	@Length(min = 15)
 	@NotEmpty
 	private String nome;
@@ -45,23 +47,31 @@ public class Usuario implements Serializable {
 
 	private TipoPessoa tipo;
 
-	private Integer cpf;
+	private String cpf;
 
-	private Integer cnpj;
+	private String cnpj;
 
-	public Integer getCpf() {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-	public Integer getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(Integer cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
@@ -133,7 +143,7 @@ public class Usuario implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 
@@ -146,10 +156,7 @@ public class Usuario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
+		if (id != other.id)
 			return false;
 		return true;
 	}

@@ -5,33 +5,26 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="/layout/template.xhtml"
 	xmlns:unipe="http://java.sun.com/jsf/composite/unipe">
-	<ui:define name="content">
-		<h:outputText value="Detalhes" />
-
-		<h:form>
-			<h:commandLink value="Listar Enderecos" action="listarEnderecos" />
+	<ui:define name="content" style = "text-align: left" >
+		
+        
+		<h:form style = "text-align: left">
+			<h:commandLink value="Detalhes Enderecos" action="listarEnderecos" />
 		</h:form>
-
-		<h:outputLabel value="Logradouro:" />
-		<h:outputText value="#{enderecoBean.endereco.logradouros}" />
+        <h:outputText value="Detalhes"/>
+         <!--  -->
+		<h:outputLabel value="Logradouro:"/><h:outputText value="#{enderecoBean.endereco.logradouros}" />
 		
-		<h:outputLabel value="Bairro:" />
-		<h:outputText value="#{enderecoBean.endereco.bairro}" />
-
-
-		<h:outputLabel value="Municipio:" />
-		<h:outputText value="#{enderecoBean.endereco.municipio}" />
-
-
-		<h:outputLabel value="Estado:" />
-		<h:outputText value="#{enderecoBean.endereco.estados}" />
-
-
-		<h:outputLabel value="Numero:" />
-		<h:outputText value="#{enderecoBean.endereco.numero}" />
+		<h:outputLabel value="Bairro:"/><h:outputText value="#{enderecoBean.endereco.bairro}"/>
 		
-		<h:outputLabel value="Cep:" />
-		<h:outputText value="#{enderecoBean.endereco.cep}" />
+		<h:outputLabel value="Municipio:"/><h:outputText value="#{enderecoBean.endereco.municipio}"/>
+		
+		<h:outputLabel value="Estado:"/><h:outputText value="#{enderecoBean.endereco.estado}"/>
+
+		<h:outputLabel value="Numero:"/><h:outputText value="#{enderecoBean.endereco.numero}"/>
+		
+		<h:outputText value="#{enderecoBean.endereco.cep}"/>
+		 <!--  -->
 	</ui:define>
 </ui:composition>
 

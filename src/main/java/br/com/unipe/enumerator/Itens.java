@@ -33,11 +33,11 @@ public enum Itens {
 		this.label = label;
 	}
 
-	public boolean addItem(Item item) {
+	public void addItem(Item item) {
+
 		if (item != null && !listItens.contains(item)) {
-			return listItens.add(item);
-		} else {
-			return false;
+			listItens.add(item);
+
 		}
 	}
 
@@ -45,18 +45,17 @@ public enum Itens {
 		return listItens;
 	}
 
-	public boolean updateItem(Item item, Item novoItem) {
+	public void updateItem(int id, Item item) {
 		for (int i = 0; i < listItens.size(); i++)
-			if (item.getNome().equals(listItens.get(i)))
-				listItens.set(i, novoItem);
-		return true;
+			if (item.equals(listItens.get(i)) && item.getId() != (id))
+				;
+		listItens.set(id, item);
+
 	}
 
-	public boolean removeItem(Item item) {
+	public void removeItem(Item item) {
 		if (item != null && listItens.contains(item)) {
-			return listItens.remove(item);
-		} else {
-			return false;
+			listItens.remove(item);
 		}
 	}
 
