@@ -8,7 +8,7 @@
 	xmlns:unipe="http://java.sun.com/jsf/composite/unipe">
 	<ui:define name="content">
 		<p:messages showDetail="true" showSummary="false" globalOnly="true" />
-		<p:panel header="Cadastro de Endereco">
+		<p:panel header="Atualizar Endereco">
 
 			<h:form id="form" prependId="false">
 				<p:panelGrid columns="1">
@@ -51,8 +51,8 @@
 
 				</p:panelGrid>
 
-				<p:commandButton value="Cadastrar"
-					action="#{enderecoBean.adicionarEndereco}" 
+				<p:commandButton value="Salvar"
+					action="#{enderecoBean.atualizarEndereco}" 
 					ajax="false" />
 			</h:form>
 		</p:panel>

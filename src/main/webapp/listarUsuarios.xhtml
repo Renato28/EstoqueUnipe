@@ -56,8 +56,8 @@
 							oncomplete="PF('dialogDetail').show()" />
 					</p:column>
 				</p:dataTable>
-				<p:commandButton value="Editar"
-					action="#{usuarioBean.atualizarUsuario(nome,usuario)}" ajax="false" />
+				<p:commandButton value="Atualizar"
+					action="atualizarUsuario?faces-redirect=true" ajax="false" />
 				<p:commandButton value="Excluir"
 					action="#{usuarioBean.removerUsuario}" ajax="false" />
 			</h:form>

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/layout/template.xhtml"
+	xmlns:unipe="http://java.sun.com/jsf/composite/unipe">
+	<ui:define name="content">
+		<p:messages showDetail="true" showSummary="false" globalOnly="true" />
+		<p:panel header="Atualizar Usuário">
+
+			<h:form id="form1" prependId="false">
+				<p:panelGrid id="grade" columns="1">
+
+
+					<p:outputLabel value="Nome:" for="nome" />
+					<p:inputText id="nome" value="#{usuarioBean.usuario.nome}" />
+
+					<p:outputLabel value="Username:" for="username" />
+					<p:inputText id="username" value="#{usuarioBean.usuario.username}"
+						required="true" validator="usernameValidator" />
+
+					<p:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" value="#{usuarioBean.usuario.email}"
+						validator="emailValidator">
+					</p:inputText>
+					<p:message for="email" />
+
+					<p:outputLabel value="Password:" for="passwd" />
+					<p:password id="passwd" value="#{usuarioBean.usuario.password}">
+					</p:password>
+					<p:message for="passwd" />
+
+					<p:outputLabel value="Sexo:" for="sexo" />
+					<p:selectOneRadio id="sexo" value="#{usuarioBean.usuario.sexo}"
+						converter="sexoConverter">
+						<f:selectItems value="#{usuarioBean.listSexo}" />
+					</p:selectOneRadio>
+					<p:message for="sexo" />
+
+					<h:outputLabel for="tipoPessoa" value="Tipo: " />
+					<br></br>
+
+					<p:selectOneMenu id="tipoPessoa" value="#{usuarioBean.pessoa.tipo}">
+						<f:selectItem itemLabel="Pessoa Fisica" itemValue="F" />
+						<f:selectItem itemLabel="Pessoa Jurídica" itemValue="J" />
+						<p:ajax listener="#{usuarioBean.renderizar}" update=":form1:grade" />
+					</p:selectOneMenu>
+					<p></p>
+
+					<p:fieldset>
+						<h:outputLabel for="cpf" value="CPF: " />
+						<br></br>
+						<p:inputMask mask="999.999.999-99" converter="cpfConverter"
+							id="cpf" disabled="#{usuarioBean.isRenderiza}" />
+					</p:fieldset>
+					<p></p>
+
+					<p:fieldset id="pac" legend="Empresa"
+						rendered="#{usuarioBean.isRenderiza}">
+
+						<h:outputLabel for="cnpj" value="CNPJ: " />
+						<p:inputMask mask="99.999.999/9999-99" id="cnpj"
+							converter="cnpjConverter" />
+					</p:fieldset>
+
+					<p:outputLabel value="Data Nascimento:" for="dtNasc" />
+					<p:calendar id="dtNasc" value="#{usuarioBean.usuario.dtNasc}"
+						required="true" showOn="button" navigator="true"
+						validator="datanascimentoValidator" />
+					<p:message id="DtNasc" for="dtNasc" />
+
+				</p:panelGrid>
+				<p></p>
+				<p:commandButton value="Salvar"
+					action="#{usuarioBean.adicionarUsuario}" ajax="false" />
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

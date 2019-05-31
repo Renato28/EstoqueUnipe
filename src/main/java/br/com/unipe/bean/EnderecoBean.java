@@ -138,7 +138,7 @@ public class EnderecoBean extends UsuarioBean implements Serializable {
 	public String adicionarEndereco() {
 		Enderecos.INSTANCE.addAdress(endereco);
 		listEndereco = Enderecos.INSTANCE.allAdress();
-		return "listarEnderecos.jsf";
+		return "listarEnderecos.jsf?facesRedirect=true";
 	}
 
 	public String listarEnderecos() {

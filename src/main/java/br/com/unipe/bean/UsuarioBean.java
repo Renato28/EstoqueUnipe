@@ -171,7 +171,7 @@ public class UsuarioBean implements Serializable {
 
 	public String adicionarUsuario() {
 		Usuarios.INSTANCE.addUsers(usuario);
-		listUsuarios = Usuarios.INSTANCE.allUsers();
+//		listUsuarios = Usuarios.INSTANCE.allUsers();
 		return "listarUsuarios.jsf";
 	}
 

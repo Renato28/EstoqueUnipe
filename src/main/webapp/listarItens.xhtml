@@ -46,8 +46,8 @@
 							oncomplete="PF('dialogDetail').show()" />
 					</p:column>
 				</p:dataTable>
-				<p:commandButton value="Editar"
-					action="#{itemBean.atualizarItem(item)}" ajax="false" />
+				<p:commandButton value="Atualizar"
+					action="atualizarItem?faces-redirect=true" ajax="false" />
 				<p:commandButton value="Excluir" action="#{itemBean.removerItem}"
 					ajax="false" />
 			</h:form>
@@ -61,8 +61,8 @@
 						<p:outputLabel value="Quantidade:" />
 						<h:outputText value="#{itemBean.item.quantidade}" />
 
-						<!-- 						<p:outputLabel value="Tipo:" /> -->
-						<!-- 						<h:outputText value="#{itemBean.item.option}"/> -->
+						<p:outputLabel value="Tipo:" /> -->
+						<h:outputText value="#{itemBean.item.option}"/> 
 
 					</p:panelGrid>
 				</p:dialog>

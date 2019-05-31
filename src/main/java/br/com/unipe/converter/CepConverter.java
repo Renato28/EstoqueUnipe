@@ -21,7 +21,7 @@ public class CepConverter implements Converter {
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if (value != null && !value.equals("")) {
 			String cep = (String) value;
-			cep = cep.substring(0, 5) + "" + cep.substring(5, 8);
+			cep = cep.substring(0, 4) + " " + cep.substring(4, 8);
 			return cep;
 		}
 		return "";

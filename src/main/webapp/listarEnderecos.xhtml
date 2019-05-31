@@ -59,8 +59,8 @@
 							oncomplete="PF('dialogDetail').show()" />
 					</p:column>
 				</p:dataTable>
-				<p:commandButton value="Editar"
-					action="#{enderecoBean.atualizarEndereco}" ajax="false" />
+				<p:commandButton value="Atualizar"
+					action="atualizarEndereco?faces-redirect=true" ajax="false" />
 				<p:commandButton value="Excluir"
 					action="#{enderecoBean.removerEndereco}" ajax="false" />
 			</h:form>
